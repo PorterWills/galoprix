@@ -103,7 +103,7 @@
     .logo-wordmark {
       font-family: 'Boldonse', sans-serif;
       font-size: clamp(3.5rem, 10vw, 7rem);
-      letter-spacing: 0.04em;
+      letter-spacing: 0.08em;
       color: var(--mint);
       line-height: 1;
       text-shadow: 0 0 60px rgba(146,248,186,0.25);
@@ -123,7 +123,7 @@
       color: var(--white-70);
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      margin-top: 0.5rem;
+      margin-top: 1.8rem;
       animation: fadeup 1s ease 0.25s both;
     }
 
@@ -153,7 +153,7 @@
       display: flex;
       justify-content: center;
       gap: clamp(1.5rem, 5vw, 4rem);
-      margin-top: 3rem;
+      margin-top: 2.5rem;
       animation: fadeup 1s ease 0.6s both;
     }
 
@@ -163,30 +163,56 @@
 
     .stat-num {
       font-family: 'Boldonse', sans-serif;
-      font-size: clamp(2.2rem, 5vw, 3.2rem);
-      color: var(--mint);
+      font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+      color: var(--white);
       line-height: 1;
     }
 
     .stat-label {
-      font-size: 0.7rem;
+      font-size: 0.62rem;
       letter-spacing: 0.15em;
       text-transform: uppercase;
       color: var(--white-70);
       margin-top: 0.3rem;
     }
 
+    .hero-stats-champion .stat-num {
+      font-family: 'Boldonse', sans-serif;
+      font-size: clamp(2.6rem, 6vw, 4rem);
+      color: var(--mint);
+      line-height: 1;
+    }
+
+    .hero-stats-champion .stat-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      color: var(--mint);
+      opacity: 0.8;
+      margin-top: 0.8rem;
+    }
+
+    .hero-stats-champion {
+      margin-top: 2.2rem;
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      text-align: center;
+    }
+
+
+
     .scroll-cta {
       position: absolute;
       bottom: 2rem;
-      left: 50%;
-      transform: translateX(-50%);
+      left: 0;
+      right: 0;
+      margin: 0 auto;
       z-index: 3;
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 0.5rem;
-      animation: fadeup 1s ease 0.9s both;
+      opacity: 1;
     }
 
     .scroll-cta span {
@@ -229,8 +255,8 @@
     .about-headline {
       font-family: 'Boldonse', sans-serif;
       font-size: clamp(1.8rem, 4.5vw, 3rem);
-      line-height: 1.15;
-      margin-bottom: 2rem;
+      line-height: 1.7;
+      margin-bottom: 2.5rem;
     }
 
     .about-body {
@@ -245,7 +271,7 @@
 
     .pillars {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-template-columns: repeat(2, 1fr);
       gap: 1.5rem;
       margin-top: 3.5rem;
       text-align: left;
@@ -292,7 +318,7 @@
     .contact-headline {
       font-family: 'Boldonse', sans-serif;
       font-size: clamp(1.8rem, 4vw, 2.6rem);
-      margin-bottom: 1rem;
+      margin-bottom: 2rem;
     }
 
     .contact-sub {
@@ -383,7 +409,7 @@
     .form-success .tick {
       font-size: 2.5rem;
       color: var(--mint);
-      margin-bottom: 1rem;
+      margin-bottom: 2rem;
     }
 
     .form-success h3 {
@@ -470,6 +496,8 @@
         <div class="stat-num">10</div>
         <div class="stat-label">Events</div>
       </div>
+    </div>
+    <div class="hero-stats hero-stats-champion">
       <div class="stat">
         <div class="stat-num">1</div>
         <div class="stat-label">World Champion</div>
@@ -494,8 +522,7 @@
   <p class="about-body reveal">
     Racing runs across every continent. Billions move through its betting pools every week.
     And yet it has <strong>no global league, no world champion, no season.</strong><br><br>
-    Galoprix changes that. Nation vs nation. Jockeys as stars. A format built for the 
-    streaming era — where tribalism drives fandom, and every race on the calendar matters.
+    Galoprix changes that. Nation vs nation. Jockeys as stars. A format built for the streaming era, where tribalism drives fandom and every race on the calendar matters.
   </p>
 
   <div class="pillars">
@@ -526,8 +553,7 @@
     <p class="section-label reveal">Get In Touch</p>
     <h2 class="contact-headline reveal">Interested in Galoprix?</h2>
     <p class="contact-sub reveal">
-      Whether you're an investor, franchise buyer, media partner, or racing authority — 
-      we want to hear from you.
+      Whether you are an investor, franchise buyer, media partner, or racing authority, we want to hear from you.
     </p>
 
     <form id="contactForm" class="reveal" onsubmit="handleSubmit(event)">
