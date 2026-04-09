@@ -158,7 +158,7 @@
     .hero-stats {
       display: flex;
       justify-content: center;
-      gap: clamp(1.5rem, 5vw, 4rem);
+      gap: clamp(2rem, 5vw, 5rem);
       margin-top: 1.2rem;
       animation: fadeup 1s ease 0.6s both;
     }
@@ -194,6 +194,14 @@
       letter-spacing: 0.2em;
       color: var(--white-70);
       margin-top: 0.8rem;
+    }
+
+    .stat-divider {
+      width: 1px;
+      height: 40px;
+      background: var(--mint);
+      opacity: 0.5;
+      align-self: center;
     }
 
     .hero-stats-champion {
@@ -509,17 +517,19 @@
   </div>
 
   <div class="hero-bottom reveal">
-    <p class="hero-intro"><strong>The world's oldest sport. Finally crowned.</strong></p>
+    <p class="hero-intro">The world's oldest sport. Finally crowned.</p>
 
     <div class="hero-stats">
       <div class="stat">
         <div class="stat-num">10</div>
         <div class="stat-label">Nations</div>
       </div>
+      <div class="stat-divider"></div>
       <div class="stat">
         <div class="stat-num">20</div>
         <div class="stat-label">Jockeys</div>
       </div>
+      <div class="stat-divider"></div>
       <div class="stat">
         <div class="stat-num">10</div>
         <div class="stat-label">Events</div>
