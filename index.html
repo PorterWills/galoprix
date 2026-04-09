@@ -186,8 +186,7 @@
     .hero-stats-champion .stat-label {
       font-size: 0.75rem;
       letter-spacing: 0.2em;
-      color: var(--mint);
-      opacity: 0.8;
+      color: var(--white-70);
       margin-top: 0.8rem;
     }
 
@@ -223,17 +222,12 @@
     }
 
     .scroll-arrow {
-      width: 20px;
-      height: 20px;
-      border-right: 2px solid var(--mint);
-      border-bottom: 2px solid var(--mint);
-      transform: rotate(45deg);
       animation: bounce 1.6s ease infinite;
     }
 
     @keyframes bounce {
-      0%, 100% { transform: rotate(45deg) translateY(0); }
-      50%       { transform: rotate(45deg) translateY(5px); }
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(6px); }
     }
 
     /* ── ABOUT SECTION ── */
@@ -507,7 +501,9 @@
 
   <div class="scroll-cta">
     <span>Discover</span>
-    <div class="scroll-arrow"></div>
+    <svg class="scroll-arrow" width="24" height="14" viewBox="0 0 24 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M1 1L12 12L23 1" stroke="#92F8BA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
   </div>
 </section>
 
