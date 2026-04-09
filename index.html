@@ -116,14 +116,24 @@
       font-weight: 300;
     }
 
+    .hero-headline {
+      font-family: 'Sora', sans-serif;
+      font-weight: 600;
+      font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+      color: var(--white);
+      letter-spacing: 0.02em;
+      margin-top: 1.4rem;
+      animation: fadeup 1s ease 0.2s both;
+    }
+
     .tagline {
       font-family: 'Sora', sans-serif;
       font-weight: 300;
-      font-size: clamp(1rem, 2.5vw, 1.35rem);
+      font-size: clamp(0.75rem, 1.8vw, 1rem);
       color: var(--white-70);
-      letter-spacing: 0.12em;
+      letter-spacing: 0.15em;
       text-transform: uppercase;
-      margin-top: 1.8rem;
+      margin-top: 0.6rem;
       animation: fadeup 1s ease 0.25s both;
     }
 
@@ -294,6 +304,26 @@
       font-size: 0.92rem;
       line-height: 1.65;
       color: var(--white-70);
+    }
+
+    /* ── TRACTION SECTION ── */
+    .traction-section {
+      background: var(--navy);
+      padding: 3rem 1.5rem;
+      border-top: 1px solid rgba(146,248,186,0.1);
+      border-bottom: 1px solid rgba(146,248,186,0.1);
+    }
+
+    .traction-inner {
+      max-width: 760px;
+      margin: 0 auto;
+      text-align: center;
+      font-family: 'Sora', sans-serif;
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      font-weight: 600;
+      color: var(--mint);
+      line-height: 1.7;
+      letter-spacing: 0.01em;
     }
 
     /* ── CONTACT SECTION ── */
@@ -469,6 +499,7 @@
 
   <div class="hero-content">
     <div class="logo-wordmark">GALOPRIX</div>
+    <p class="hero-headline">The world's oldest sport. Finally crowned.</p>
     <p class="tagline">Where Nations Come to Race</p>
     <div class="hero-divider"></div>
     <p class="hero-intro">
@@ -518,7 +549,9 @@
   <p class="about-body reveal">
     Racing runs across every continent. Billions move through its betting pools every week.
     And yet it has <strong>no global league, no world champion, no season.</strong><br><br>
-    Galoprix changes that. Nation vs nation. Jockeys as stars. A format built for the streaming era, where tribalism drives fandom and every race matters.
+    Galoprix changes that. Nation vs nation. Jockeys as stars. A format built for the streaming era, where tribalism drives fandom and every race matters.<br><br>
+    Horse racing moves over $110 billion globally across betting, sponsorship and media every year. The sport has the economics of a global industry and the structure of a domestic one. Galoprix closes that gap.<br><br>
+    Galoprix is structured as a franchise league. Revenue flows from franchise fees, betting partnerships, broadcast rights and title sponsorship. The model is built. The window is open.
   </p>
 
   <div class="pillars">
@@ -536,7 +569,7 @@
     </div>
     <div class="pillar reveal">
       <div class="pillar-title">Never Been Done</div>
-      <div class="pillar-body">55+ IFHA nations. No season-long global franchise league has ever existed. Until now.</div>
+      <div class="pillar-body">55+ IFHA nations. No season-long global franchise league has ever existed. The barriers that made it impossible five years ago are gone.</div>
     </div>
   </div>
 </section>
@@ -544,12 +577,18 @@
 <!-- ══════════════════════════════════════
      CONTACT
 ══════════════════════════════════════ -->
+<section class="traction-section">
+  <div class="traction-inner reveal">
+    Jockey commitments secured across seven nations. Host venue letters of intent in place. 28 operators already commingling across six continents.
+  </div>
+</section>
+
 <section class="contact-section" id="contact">
   <div class="contact-inner">
     <p class="section-label reveal">Get In Touch</p>
     <h2 class="contact-headline reveal">Interested in Galoprix?</h2>
     <p class="contact-sub reveal">
-      Whether you are an investor, franchise buyer, media partner, or racing authority, we want to hear from you.
+      Whether you are an investor, franchise buyer, media partner or racing authority, we want to hear from you. Serious investment and franchise enquiries receive a full brief under NDA.
     </p>
 
     <form id="contactForm" class="reveal" onsubmit="handleSubmit(event)">
