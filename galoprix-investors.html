@@ -1,0 +1,1064 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Investor Data Room — Galoprix</title>
+<style>
+  /* ============================================================
+     Galoprix tokens (inlined from colors_and_type.css)
+     ============================================================ */
+
+  @font-face {
+    font-family: "Boldonse";
+    src: url("/Boldonse-Regular.ttf") format("truetype");
+    font-weight: 400; font-style: normal; font-display: swap;
+  }
+  @font-face {
+    font-family: "Sora";
+    src: url("/Sora-Light.ttf") format("truetype");
+    font-weight: 300; font-style: normal; font-display: swap;
+  }
+  @font-face {
+    font-family: "Sora";
+    src: url("/Sora-SemiBold.ttf") format("truetype");
+    font-weight: 600; font-style: normal; font-display: swap;
+  }
+
+  :root {
+    --racing-blue: #010125;
+    --mint:        #92F8BA;
+    --white:       #FFFFFF;
+
+    --rule-on-blue-faint: rgba(255, 255, 255, 0.12);
+    --rule-on-white:      rgba(1, 1, 37, 0.14);
+
+    --font-wordmark: "Boldonse", "Times New Roman", serif;
+    --font-sans:     "Sora", ui-sans-serif, system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+
+    --ease-out: cubic-bezier(0.22, 0.61, 0.36, 1);
+    --dur-fast: 120ms;
+  }
+
+  /* ============================================================
+     Investor Data Room — single-page hub
+     ============================================================ */
+
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html, body {
+    background: var(--white);
+    color: var(--racing-blue);
+    margin: 0;
+    font-family: var(--font-sans);
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  a { color: inherit; text-decoration: none; }
+  ::selection { background: var(--mint); color: var(--racing-blue); }
+
+  .container {
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  /* ---------- Password gate ------------------------------------ */
+
+  .gate {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: var(--racing-blue);
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px;
+  }
+  .gate.hidden { display: none; }
+
+  .gate-card {
+    width: 100%;
+    max-width: 460px;
+  }
+  .gate-wordmark {
+    font-family: var(--font-wordmark);
+    font-size: 22px;
+    color: var(--mint);
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    margin-bottom: 56px;
+  }
+  .gate-eyebrow {
+    color: var(--mint);
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+  }
+  .gate-title {
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: 40px;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    margin: 0 0 14px;
+  }
+  .gate-orient {
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 1.55;
+    color: rgba(255,255,255,0.72);
+    margin: 0 0 36px;
+  }
+  .gate-form {
+    display: flex;
+    gap: 12px;
+    align-items: stretch;
+    border-bottom: 1px solid rgba(255,255,255,0.3);
+    padding-bottom: 6px;
+    transition: border-color var(--dur-fast) var(--ease-out);
+  }
+  .gate-form:focus-within { border-color: var(--mint); }
+  .gate-form input {
+    flex: 1;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    font-family: var(--font-sans);
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--white);
+    padding: 10px 0;
+    letter-spacing: 0.04em;
+  }
+  .gate-form input::placeholder { color: rgba(255,255,255,0.4); }
+  .gate-form button {
+    background: var(--mint);
+    color: var(--racing-blue);
+    border: 0;
+    border-radius: 2px;
+    padding: 10px 16px 9px;
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: 11.5px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: opacity var(--dur-fast) var(--ease-out);
+    line-height: 1;
+  }
+  .gate-form button:hover { opacity: 0.85; }
+  .gate-error {
+    margin: 14px 0 0;
+    font-size: 12px;
+    color: var(--mint);
+    letter-spacing: 0.04em;
+  }
+  .gate-help {
+    margin: 56px 0 0;
+    font-size: 12px;
+    color: rgba(255,255,255,0.45);
+    letter-spacing: 0.04em;
+  }
+  .gate-help a {
+    border-bottom: 1px solid rgba(146,248,186,0.45);
+    padding-bottom: 1px;
+  }
+  .gate-help a:hover { color: var(--mint); border-color: var(--mint); }
+
+  /* Hide the data room until unlocked (avoids flash of content) */
+  body.locked .site { display: none; }
+
+  /* ---------- Header (Racing Blue) ------------------------------ */
+
+  .top {
+    background: var(--racing-blue);
+    color: var(--white);
+  }
+
+  .top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 32px;
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  .wordmark-link {
+    display: inline-flex;
+    align-items: center;
+    color: var(--mint);
+    height: 28px;
+  }
+
+  .top-meta {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+  }
+  .top-meta .session {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    opacity: 0.7;
+    font-variant-numeric: tabular-nums;
+  }
+  .top-meta .dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--mint);
+    animation: pulse 1.4s var(--ease-out) infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.35; }
+  }
+  .top-meta .logout {
+    border-bottom: 1px solid rgba(255,255,255,0.4);
+    padding-bottom: 2px;
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    transition: border-color var(--dur-fast) var(--ease-out);
+    cursor: pointer;
+  }
+  .top-meta .logout:hover { border-color: var(--mint); color: var(--mint); }
+
+  /* ---------- Page title block ---------------------------------- */
+
+  .title-block {
+    background: var(--racing-blue);
+    color: var(--white);
+    padding: 64px 0 56px;
+    border-bottom: 1px solid var(--rule-on-blue-faint);
+  }
+
+  .title-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 48px;
+    align-items: end;
+  }
+
+  .eyebrow-mint {
+    color: var(--mint);
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  h1.page-title {
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: clamp(40px, 5vw, 64px);
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    margin: 0 0 18px;
+    text-wrap: balance;
+  }
+
+  .page-orient {
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 1.55;
+    color: rgba(255,255,255,0.72);
+    max-width: 680px;
+    margin: 0;
+  }
+  .page-orient .mint { color: var(--mint); }
+
+  /* ---------- Contact strip (sub-header) ------------------------ */
+
+  .contact-strip {
+    background: var(--racing-blue);
+    color: var(--white);
+    border-bottom: 1px solid var(--rule-on-blue-faint);
+  }
+  .contact-inner {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    padding: 14px 0;
+    flex-wrap: wrap;
+  }
+  .contact-strip .label {
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    font-weight: 600;
+  }
+  .contact-item {
+    display: inline-flex; align-items: baseline; gap: 10px;
+    font-size: 13px;
+    color: rgba(255,255,255,0.85);
+  }
+  .contact-item a { border-bottom: 1px solid rgba(146,248,186,0.45); padding-bottom: 1px; transition: border-color var(--dur-fast); }
+  .contact-item a:hover { border-color: var(--mint); color: var(--mint); }
+
+  /* ---------- Sticky category nav ------------------------------- */
+
+  .catnav {
+    position: sticky;
+    top: 0;
+    z-index: 30;
+    background: var(--white);
+    border-bottom: 1px solid var(--rule-on-white);
+  }
+  .catnav-inner {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .catnav-inner::-webkit-scrollbar { display: none; }
+
+  .catnav a {
+    flex: 1 1 auto;
+    padding: 16px 18px;
+    border-right: 1px solid var(--rule-on-white);
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    font-size: 12px;
+    line-height: 1.3;
+    white-space: nowrap;
+    transition: background var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out);
+    position: relative;
+  }
+  .catnav a:first-child { border-left: 1px solid var(--rule-on-white); }
+  .catnav a .num {
+    font-weight: 600;
+    font-size: 10px;
+    color: rgba(1,1,37,0.45);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.06em;
+  }
+  .catnav a .label {
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0;
+  }
+  .catnav a:hover { background: rgba(1,1,37,0.04); }
+  .catnav a.active::after {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; bottom: -1px;
+    height: 2px;
+    background: var(--racing-blue);
+  }
+  .catnav a.active .num { color: var(--racing-blue); }
+
+  /* ---------- Search / filter (subtle) -------------------------- */
+
+  .toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 24px 0;
+    border-bottom: 1px solid var(--rule-on-white);
+  }
+
+  .search {
+    flex: 1;
+    max-width: 480px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid var(--rule-on-white);
+    padding: 6px 0;
+    transition: border-color var(--dur-fast) var(--ease-out);
+  }
+  .search:focus-within { border-color: var(--racing-blue); }
+  .search .glyph {
+    font-size: 14px;
+    color: rgba(1,1,37,0.45);
+    width: 16px; text-align: center;
+  }
+  .search input {
+    flex: 1;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    font-family: var(--font-sans);
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--racing-blue);
+    padding: 6px 0;
+  }
+  .search input::placeholder { color: rgba(1,1,37,0.4); }
+
+  .toolbar-meta {
+    display: flex;
+    gap: 28px;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: rgba(1,1,37,0.5);
+  }
+  .toolbar-meta .v {
+    color: var(--racing-blue);
+    font-variant-numeric: tabular-nums;
+    margin-left: 6px;
+  }
+
+  /* ---------- Section -------------------------------------------- */
+
+  section.cat {
+    padding: 64px 0 24px;
+    border-top: 1px solid var(--rule-on-white);
+    scroll-margin-top: 64px;
+  }
+  section.cat:first-of-type { border-top: 0; padding-top: 56px; }
+
+  .cat-head {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: end;
+    gap: 32px;
+    margin-bottom: 12px;
+  }
+  .cat-num {
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--racing-blue);
+    margin-bottom: 12px;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+  }
+  .cat-num .index {
+    color: rgba(1,1,37,0.4);
+    font-variant-numeric: tabular-nums;
+  }
+  h2.cat-title {
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: clamp(28px, 3vw, 36px);
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    margin: 0;
+    text-wrap: balance;
+  }
+  .cat-desc {
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 1.5;
+    color: rgba(1,1,37,0.65);
+    max-width: 560px;
+    margin: 0;
+  }
+  .cat-count {
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(1,1,37,0.45);
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+  .cat-count .v { color: var(--racing-blue); margin-right: 4px; }
+
+  .cat-rule {
+    height: 1px;
+    background: var(--mint);
+    margin: 24px 0 32px;
+  }
+
+  /* ---------- Document grid + cards ----------------------------- */
+
+  .doc-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0;
+    border: 1px solid var(--rule-on-white);
+    background: var(--white);
+  }
+
+  .doc {
+    padding: 24px 24px 22px;
+    border-right: 1px solid var(--rule-on-white);
+    border-bottom: 1px solid var(--rule-on-white);
+    display: grid;
+    grid-template-rows: auto auto 1fr auto;
+    gap: 12px;
+    min-height: 220px;
+    background: var(--white);
+    transition: background var(--dur-fast) var(--ease-out);
+    position: relative;
+  }
+  .doc:hover { background: rgba(1,1,37,0.025); }
+  .doc-grid .doc:nth-child(3n) { border-right: 0; }
+
+  .doc-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    min-height: 18px;
+  }
+  .doc-num {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: rgba(1,1,37,0.4);
+    font-variant-numeric: tabular-nums;
+  }
+  .doc-type {
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: 4px 8px 3px;
+    border: 1px solid var(--rule-on-white);
+    color: var(--racing-blue);
+    border-radius: 2px;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .doc-title {
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 1.25;
+    letter-spacing: -0.005em;
+    margin: 0;
+    color: var(--racing-blue);
+    text-wrap: balance;
+  }
+  .doc-desc {
+    font-weight: 300;
+    font-size: 13.5px;
+    line-height: 1.5;
+    color: rgba(1,1,37,0.7);
+    margin: 0;
+    text-wrap: pretty;
+  }
+
+  .doc-foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 4px;
+  }
+
+  .btn-open {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--mint);
+    color: var(--racing-blue);
+    border: 0;
+    border-radius: 2px;
+    padding: 11px 16px 10px;
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: 11.5px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: opacity var(--dur-fast) var(--ease-out);
+    line-height: 1;
+  }
+  .btn-open:hover { opacity: 0.85; }
+  .btn-open:active { opacity: 0.7; }
+  .btn-open .arr { font-weight: 300; font-size: 14px; letter-spacing: 0; }
+
+  .doc-meta {
+    font-size: 11px;
+    color: rgba(1,1,37,0.45);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.04em;
+  }
+
+  .doc.hidden { display: none; }
+  section.cat.empty { display: none; }
+
+  /* ---------- Footer -------------------------------------------- */
+
+  footer.bottom {
+    background: var(--racing-blue);
+    color: var(--white);
+    margin-top: 96px;
+    padding: 56px 0 40px;
+    border-top: 1px solid var(--rule-on-blue-faint);
+  }
+  .foot-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 48px;
+    margin-bottom: 40px;
+  }
+  .foot-grid h4 {
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--mint);
+    font-weight: 600;
+    margin: 0 0 14px;
+  }
+  .foot-grid p {
+    font-size: 13px;
+    line-height: 1.55;
+    color: rgba(255,255,255,0.65);
+    margin: 0;
+    max-width: 420px;
+  }
+  .foot-grid li {
+    list-style: none;
+    font-size: 13px;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.7;
+  }
+  .foot-grid ul { margin: 0; padding: 0; }
+  .foot-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-top: 1px solid var(--rule-on-blue-faint);
+    padding-top: 24px;
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: rgba(255,255,255,0.45);
+    font-variant-numeric: tabular-nums;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .no-results {
+    display: none;
+    padding: 80px 0;
+    text-align: center;
+  }
+  .no-results.show { display: block; }
+  .no-results .h {
+    font-weight: 600;
+    font-size: 20px;
+    margin-bottom: 8px;
+  }
+  .no-results .p {
+    color: rgba(1,1,37,0.55);
+    font-size: 14px;
+  }
+
+  /* ---------- Responsive ---------------------------------------- */
+
+  @media (max-width: 980px) {
+    .doc-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .doc-grid .doc:nth-child(3n) { border-right: 1px solid var(--rule-on-white); }
+    .doc-grid .doc:nth-child(2n) { border-right: 0; }
+    .title-grid { grid-template-columns: 1fr; gap: 24px; }
+    .foot-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+    .cat-head { grid-template-columns: 1fr; }
+    .cat-count { text-align: left; }
+  }
+  @media (max-width: 640px) {
+    .container { padding: 0 20px; }
+    .top-bar { padding: 14px 20px; }
+    .doc-grid { grid-template-columns: 1fr; }
+    .doc-grid .doc { border-right: 0 !important; }
+    .doc { min-height: 0; }
+    .title-block { padding: 40px 0 36px; }
+    h1.page-title { font-size: 36px; }
+    .toolbar { flex-direction: column; align-items: stretch; gap: 16px; }
+    .toolbar-meta { gap: 16px; }
+    .foot-grid { grid-template-columns: 1fr; }
+    .contact-inner { gap: 16px; }
+    section.cat { padding: 48px 0 16px; }
+    .gate-title { font-size: 32px; }
+    .gate-form { flex-direction: column; }
+  }
+
+  /* ---------- Print -------------------------------------------- */
+  @media print {
+    .gate { display: none !important; }
+    body.locked .site { display: block !important; }
+    .top, .contact-strip, .catnav, .toolbar, footer.bottom { background: var(--white) !important; color: var(--racing-blue) !important; }
+    .top-meta, .page-orient { color: var(--racing-blue) !important; }
+    .wordmark-link { color: var(--racing-blue) !important; }
+    .catnav { position: static; }
+    .doc { break-inside: avoid; }
+    .btn-open { background: transparent; border: 1px solid var(--racing-blue); }
+    h1.page-title, .page-orient { color: var(--racing-blue) !important; }
+  }
+</style>
+</head>
+<body class="locked">
+
+<!-- ============================================================
+     PASSWORD GATE
+     ============================================================ -->
+<div class="gate" id="gate">
+  <div class="gate-card">
+    <div class="gate-wordmark">GALOPRIX</div>
+    <div class="gate-eyebrow">Investor Data Room · Series A</div>
+    <h1 class="gate-title">Confidential.</h1>
+    <p class="gate-orient">For named investors only. Enter the access code provided to continue.</p>
+    <form class="gate-form" id="gate-form">
+      <input type="password" id="gate-input" placeholder="Access code" autocomplete="off" autofocus required>
+      <button type="submit">Enter</button>
+    </form>
+    <p class="gate-error" id="gate-error" hidden>That access code didn't match. Please try again.</p>
+    <p class="gate-help">Need access? <a href="mailto:info@galoprix.com">info@galoprix.com</a></p>
+  </div>
+</div>
+
+<!-- ============================================================
+     SITE (revealed after gate)
+     ============================================================ -->
+<div class="site">
+
+<header class="top">
+  <div class="top-bar">
+    <a class="wordmark-link" href="/" aria-label="Galoprix">
+      <span style="font-family: var(--font-wordmark); font-size: 22px; line-height: 1; letter-spacing: 0.02em; text-transform: uppercase;">GALOPRIX</span>
+    </a>
+    <div class="top-meta">
+      <span class="session"><span class="dot"></span>Session active</span>
+      <a class="logout" id="logout">Log out</a>
+    </div>
+  </div>
+</header>
+
+<div class="title-block">
+  <div class="container">
+    <div class="title-grid">
+      <div>
+        <div class="eyebrow-mint">Investor Data Room · Series A</div>
+        <h1 class="page-title">Investor Data Room.</h1>
+        <p class="page-orient">
+          Confidential. <span class="mint">For named investors only.</span> All materials provided under NDA.
+          Six categories, twenty-three documents — the complete data room in one surface.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="contact-strip">
+  <div class="container">
+    <div class="contact-inner">
+      <span class="label">Contact</span>
+      <span class="contact-item">
+        <a href="mailto:info@galoprix.com">info@galoprix.com</a>
+      </span>
+    </div>
+  </div>
+</div>
+
+<nav class="catnav" aria-label="Categories">
+  <div class="container catnav-inner">
+    <a href="#cat-1" data-cat="cat-1"><span class="num">01</span><span class="label">Start Here — The Pitch</span></a>
+    <a href="#cat-2" data-cat="cat-2"><span class="num">02</span><span class="label">The Business</span></a>
+    <a href="#cat-3" data-cat="cat-3"><span class="num">03</span><span class="label">Market &amp; Strategy</span></a>
+    <a href="#cat-4" data-cat="cat-4"><span class="num">04</span><span class="label">Markets &amp; Operations</span></a>
+    <a href="#cat-5" data-cat="cat-5"><span class="num">05</span><span class="label">Wagering &amp; Compliance</span></a>
+    <a href="#cat-6" data-cat="cat-6"><span class="num">06</span><span class="label">Corporate, Governance &amp; Risk</span></a>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="toolbar">
+    <label class="search">
+      <span class="glyph" aria-hidden="true">⌕</span>
+      <input id="q" type="search" placeholder="Search documents — title, description, file type" autocomplete="off">
+    </label>
+    <div class="toolbar-meta">
+      <span>Showing<span class="v num" id="count-shown">23</span></span>
+      <span>Categories<span class="v num">6</span></span>
+    </div>
+  </div>
+</div>
+
+<main class="container" id="main"></main>
+
+<div class="container">
+  <div class="no-results" id="no-results">
+    <div class="h">No documents match that search.</div>
+    <div class="p">Try a different term, or clear the field to see the full data room.</div>
+  </div>
+</div>
+
+<footer class="bottom">
+  <div class="container">
+    <div class="foot-grid">
+      <div>
+        <h4>Confidentiality</h4>
+        <p>
+          The contents of this data room are confidential and are provided solely for the
+          purpose of evaluating a potential investment in Galoprix Global Ventures Limited.
+          Materials may not be reproduced, redistributed or disclosed to any third party
+          without prior written consent.
+        </p>
+      </div>
+      <div>
+        <h4>Entity</h4>
+        <ul>
+          <li>Galoprix Global Ventures Limited</li>
+          <li>Registered in England &amp; Wales</li>
+          <li>Co. No. 14872910</li>
+          <li>71–75 Shelton Street, London WC2H 9JQ</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li>info@galoprix.com</li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Galoprix Global Ventures Limited. All rights reserved.</span>
+    </div>
+  </div>
+</footer>
+
+</div><!-- /.site -->
+
+<script>
+  /* ============================================================
+     PASSWORD GATE
+     Change ACCESS_CODE below to whatever you'd like to share with
+     investors. This is a light gate — anyone who views the page
+     source can find this string, so don't rely on it for genuine
+     secrecy.
+     ============================================================ */
+  const ACCESS_CODE = "galoprix2026";
+
+  const gate     = document.getElementById("gate");
+  const gateForm = document.getElementById("gate-form");
+  const gateInput= document.getElementById("gate-input");
+  const gateErr  = document.getElementById("gate-error");
+  const logout   = document.getElementById("logout");
+
+  function unlock() {
+    sessionStorage.setItem("idr_unlocked", "1");
+    document.body.classList.remove("locked");
+    gate.classList.add("hidden");
+  }
+  function lock() {
+    sessionStorage.removeItem("idr_unlocked");
+    document.body.classList.add("locked");
+    gate.classList.remove("hidden");
+    gateInput.value = "";
+    gateInput.focus();
+  }
+
+  if (sessionStorage.getItem("idr_unlocked") === "1") {
+    unlock();
+  }
+
+  gateForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    if (gateInput.value.trim() === ACCESS_CODE) {
+      gateErr.hidden = true;
+      unlock();
+    } else {
+      gateErr.hidden = false;
+      gateInput.select();
+    }
+  });
+
+  if (logout) {
+    logout.addEventListener("click", (e) => { e.preventDefault(); lock(); });
+  }
+
+  /* ============================================================
+     DATA ROOM CONTENT
+     ============================================================ */
+  const DATA = [
+    {
+      id: "cat-1", num: "01", title: "Start Here — The Pitch",
+      desc: "The first-touch documents. Read these first.",
+      docs: [
+        { t: "Executive Teaser",        d: "The 60-second read. What Galoprix is, why now, and the ask.",                      ext: "PDF",  pages: "2 pp",  size: "0.4 MB" },
+        { t: "One Page Fact Sheet",     d: "Single-page reference covering format, market, model, and Season 1.",              ext: "PDF",  pages: "1 p",   size: "0.2 MB" },
+        { t: "Full Investor Deck",      d: "The complete pitch — thesis, format, commercial architecture, traction.",          ext: "PDF",  pages: "84 pp", size: "12.4 MB" },
+        { t: "Exit Valuation Deck",     d: "Comparator-led valuation thesis and exit pathway analysis.",                       ext: "PDF",  pages: "32 pp", size: "4.8 MB" },
+      ],
+    },
+    {
+      id: "cat-2", num: "02", title: "The Business",
+      desc: "Commercial logic, financial model, franchise economics.",
+      docs: [
+        { t: "Business Model Memorandum",                   d: "Revenue architecture, commercial sequencing, and the financial logic explained.", ext: "PDF",  pages: "48 pp",      size: "3.2 MB" },
+        { t: "Franchise Model — Investor Overview",         d: "Dual ownership structure, three-stage rights framework, fee model and exit terms.", ext: "PDF",  pages: "36 pp",      size: "2.6 MB" },
+        { t: "8-Year Financial Model — Strategic Markets",  d: "Full P&L, revenue build, cost build, headcount and scenario engine through 2034.", ext: "XLSX", pages: "14 sheets",  size: "5.1 MB" },
+        { t: "Franchise Owner P&L",                         d: "Per-nation operator economics — the financial case for a franchise buyer.",        ext: "XLSX", pages: "8 sheets",   size: "1.4 MB" },
+        { t: "Season 1 Per-Event Budget",                   d: "Event-level cost breakdown for the ten Season 1 race days.",                        ext: "XLSX", pages: "11 sheets",  size: "2.0 MB" },
+      ],
+    },
+    {
+      id: "cat-3", num: "03", title: "Market & Strategy",
+      desc: "Macro environment, fan strategy, media rights.",
+      docs: [
+        { t: "Macro Environment Brief",   d: "External environment assessment — political, economic, social, technological.",                 ext: "PDF",  pages: "22 pp", size: "1.8 MB" },
+        { t: "Fan Engagement Strategy",   d: "Audience architecture and the route to direct fan relationship.",                                ext: "PDF",  pages: "28 pp", size: "2.4 MB" },
+        { t: "Media Rights Strategy",     d: "Streaming-first, linear-layered. The path from Season 1 viewership to Season 3 rights cycle.",   ext: "PDF",  pages: "34 pp", size: "3.0 MB" },
+      ],
+    },
+    {
+      id: "cat-4", num: "04", title: "Markets & Operations",
+      desc: "Territory analysis, regulatory landscape, venue selection.",
+      docs: [
+        { t: "Regulatory & Licensing Market Overview", d: "18-market deep dive on racing authorities, leverage points, and engagement strategy.", ext: "PDF",  pages: "76 pp",     size: "8.2 MB" },
+        { t: "Investor Matrix — All Nations",          d: "Capital landscape across the founding ten and expansion candidates.",                  ext: "XLSX", pages: "6 sheets",  size: "1.1 MB" },
+        { t: "Venue Weighting",                        d: "How Season 1 host venues were selected and weighted.",                                  ext: "PDF",  pages: "18 pp",     size: "1.5 MB" },
+      ],
+    },
+    {
+      id: "cat-5", num: "05", title: "Wagering & Compliance",
+      desc: "Wagering architecture, AML and responsible gambling.",
+      docs: [
+        { t: "Wagering Architecture & Data Rights",   d: "The three-layer wagering model, PGI partnership, and source-controlled data rights.", ext: "PDF",  pages: "42 pp", size: "3.6 MB" },
+        { t: "AML & Responsible Gambling Framework",  d: "Compliance posture across jurisdictions and the responsible gambling framework.",     ext: "PDF",  pages: "30 pp", size: "2.2 MB" },
+      ],
+    },
+    {
+      id: "cat-6", num: "06", title: "Corporate, Governance & Risk",
+      desc: "Legal structure, governance, risk, IP, FAQ.",
+      docs: [
+        { t: "Corporate Structure",  d: "Registered entity, ownership, and proposed post-investment architecture.",                                       ext: "PDF",  pages: "14 pp",     size: "1.0 MB" },
+        { t: "Governance Framework", d: "Board composition, reserved matters, investor rights, and reporting cadence.",                                   ext: "DOCX", pages: "20 pp",     size: "0.6 MB" },
+        { t: "Risk Register",        d: "The full risk matrix — commercial, operational, regulatory, financial.",                                          ext: "XLSX", pages: "4 sheets",  size: "0.8 MB" },
+        { t: "IP Register",          d: "Trademarks, domains, format documentation, and brand asset ownership.",                                           ext: "XLSX", pages: "3 sheets",  size: "0.5 MB" },
+        { t: "Investor FAQ",         d: "Pre-empted due diligence questions across format, commercial, financial, regulatory, and team.",                  ext: "PDF",  pages: "26 pp",     size: "1.6 MB" },
+        { t: "Data Room Tracker",    d: "Index of every document in the data room with version control and last-updated dates.",                           ext: "XLSX", pages: "1 sheet",   size: "0.3 MB" },
+      ],
+    },
+  ];
+
+  const main = document.getElementById("main");
+  let docCounter = 0;
+  DATA.forEach((cat) => {
+    const sec = document.createElement("section");
+    sec.className = "cat";
+    sec.id = cat.id;
+
+    const head = document.createElement("div");
+    head.className = "cat-head";
+    head.innerHTML = `
+      <div>
+        <div class="cat-num">
+          <span class="index num">${cat.num}</span>
+          <span>Category ${parseInt(cat.num, 10)} of 6</span>
+        </div>
+        <h2 class="cat-title">${cat.title}</h2>
+        <p class="cat-desc">${cat.desc}</p>
+      </div>
+      <div class="cat-count"><span class="v num">${cat.docs.length}</span>documents</div>
+    `;
+    sec.appendChild(head);
+
+    const rule = document.createElement("div");
+    rule.className = "cat-rule";
+    sec.appendChild(rule);
+
+    const grid = document.createElement("div");
+    grid.className = "doc-grid";
+
+    cat.docs.forEach((doc) => {
+      docCounter += 1;
+      const idx = String(docCounter).padStart(2, "0");
+      const card = document.createElement("article");
+      card.className = "doc";
+      card.dataset.search = (doc.t + " " + doc.d + " " + doc.ext).toLowerCase();
+      card.innerHTML = `
+        <div class="doc-top">
+          <span class="doc-num">Doc ${idx}</span>
+          <span class="doc-type ${doc.ext.toLowerCase()}">${doc.ext}</span>
+        </div>
+        <h3 class="doc-title">${doc.t}</h3>
+        <p class="doc-desc">${doc.d}</p>
+        <div class="doc-foot">
+          <button class="btn-open" type="button" aria-label="Open ${doc.t}">
+            Open Document <span class="arr" aria-hidden="true">→</span>
+          </button>
+          <span class="doc-meta num">${doc.pages} · ${doc.size}</span>
+        </div>
+      `;
+      grid.appendChild(card);
+    });
+
+    sec.appendChild(grid);
+    main.appendChild(sec);
+  });
+
+  const q          = document.getElementById("q");
+  const countShown = document.getElementById("count-shown");
+  const noResults  = document.getElementById("no-results");
+  countShown.textContent = document.querySelectorAll(".doc").length;
+
+  function applyFilter() {
+    const term = q.value.trim().toLowerCase();
+    let shown = 0;
+    document.querySelectorAll("section.cat").forEach((sec) => {
+      let secShown = 0;
+      sec.querySelectorAll(".doc").forEach((card) => {
+        const match = !term || card.dataset.search.includes(term);
+        card.classList.toggle("hidden", !match);
+        if (match) { shown += 1; secShown += 1; }
+      });
+      sec.classList.toggle("empty", secShown === 0);
+    });
+    countShown.textContent = shown;
+    noResults.classList.toggle("show", shown === 0);
+  }
+  q.addEventListener("input", applyFilter);
+
+  const navLinks = document.querySelectorAll(".catnav a");
+  const io = new IntersectionObserver((entries) => {
+    const visible = entries
+      .filter((e) => e.isIntersecting)
+      .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+    if (visible.length) {
+      const id = visible[0].target.id;
+      navLinks.forEach((a) => a.classList.toggle("active", a.dataset.cat === id));
+    }
+  }, { rootMargin: "-80px 0px -60% 0px", threshold: 0 });
+  document.querySelectorAll("section.cat").forEach((s) => io.observe(s));
+
+  navLinks.forEach((a) => {
+    a.addEventListener("click", (e) => {
+      const id = a.getAttribute("href").slice(1);
+      const el = document.getElementById(id);
+      if (el) {
+        e.preventDefault();
+        const top = el.getBoundingClientRect().top + window.scrollY - 56;
+        window.scrollTo({ top, behavior: "smooth" });
+        history.replaceState(null, "", `#${id}`);
+      }
+    });
+  });
+
+  document.addEventListener("click", (e) => {
+    const btn = e.target.closest(".btn-open");
+    if (!btn) return;
+    btn.style.opacity = "0.6";
+    setTimeout(() => { btn.style.opacity = ""; }, 220);
+  });
+</script>
+</body>
+</html>
