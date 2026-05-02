@@ -524,7 +524,13 @@
     transition: background var(--dur-fast) var(--ease-out);
     position: relative;
   }
-  .doc:hover { background: rgba(1,1,37,0.025); }
+  .doc:hover,
+  .doc:focus-within { background: var(--mint); }
+  .doc:hover .btn-open,
+  .doc:focus-within .btn-open {
+    background: var(--racing-blue);
+    color: var(--mint);
+  }
   .doc-grid .doc:nth-child(3n) { border-right: 0; }
 
   .doc-top {
@@ -597,7 +603,9 @@
     letter-spacing: 0.16em;
     text-transform: uppercase;
     cursor: pointer;
-    transition: opacity var(--dur-fast) var(--ease-out);
+    transition: opacity var(--dur-fast) var(--ease-out),
+                background var(--dur-fast) var(--ease-out),
+                color var(--dur-fast) var(--ease-out);
     line-height: 1;
   }
   .btn-open:hover { opacity: 0.85; }
