@@ -541,11 +541,15 @@
     position: relative;
   }
   .doc:hover,
-  .doc:focus-within { background: var(--mint); }
-  .doc:hover .btn-open,
-  .doc:focus-within .btn-open {
-    background: var(--racing-blue);
-    color: var(--mint);
+  .doc:focus-within { background: var(--racing-blue); }
+  .doc:hover .doc-title, .doc:focus-within .doc-title,
+  .doc:hover .doc-type,  .doc:focus-within .doc-type  { color: var(--mint); }
+  .doc:hover .doc-desc,  .doc:focus-within .doc-desc  { color: rgba(146,248,186,0.85); }
+  .doc:hover .doc-num,   .doc:focus-within .doc-num   { color: rgba(146,248,186,0.6); }
+  .doc:hover .doc-type,  .doc:focus-within .doc-type  { border-color: rgba(146,248,186,0.35); }
+  .doc-num, .doc-title, .doc-desc, .doc-type {
+    transition: color var(--dur-fast) var(--ease-out),
+                border-color var(--dur-fast) var(--ease-out);
   }
   .doc-grid .doc:nth-child(3n) { border-right: 0; }
 
