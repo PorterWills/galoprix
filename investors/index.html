@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
 <title>Investor Data Room | Galoprix</title>
-  
+
 <meta name="description" content="Galoprix Investor Data Room. Confidential — for named investors only.">
 
 <meta property="og:title" content="Galoprix · Investor Data Room">
@@ -57,6 +57,7 @@
 
     --ease-out: cubic-bezier(0.22, 0.61, 0.36, 1);
     --dur-fast: 120ms;
+    --dur-med:  220ms;
   }
 
   /* ============================================================
@@ -452,6 +453,118 @@
     margin-left: 6px;
   }
 
+  /* ---------- Video briefing ------------------------------------ */
+
+  .video-block {
+    padding: 56px 0 8px;
+  }
+  .video-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+  .video-head .eyebrow {
+    color: var(--racing-blue);
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+  }
+  .video-head .lead-line {
+    font-weight: 300;
+    font-size: 15px;
+    color: rgba(1,1,37,0.65);
+    margin: 6px 0 0;
+    max-width: 640px;
+  }
+  .video-head h2 {
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: clamp(24px, 2.6vw, 32px);
+    letter-spacing: -0.01em;
+    margin: 0;
+    color: var(--racing-blue);
+  }
+  .video-head .runtime {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: rgba(1,1,37,0.45);
+    white-space: nowrap;
+  }
+  .video-head .runtime .v { color: var(--racing-blue); margin-left: 6px; }
+
+  .video-frame {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: var(--racing-blue);
+    border: 1px solid var(--rule-on-white);
+    overflow: hidden;
+  }
+  /* subtle placeholder stripes behind the poster */
+  .video-frame .placeholder {
+    position: absolute;
+    inset: 0;
+    background-image: repeating-linear-gradient(
+      -45deg,
+      rgba(146,248,186,0.06) 0,
+      rgba(146,248,186,0.06) 1px,
+      transparent 1px,
+      transparent 12px
+    );
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 22px;
+    cursor: pointer;
+    transition: background var(--dur-med) var(--ease-out);
+  }
+  .video-frame .placeholder:hover { background: rgba(146,248,186,0.04); }
+  .video-frame .play {
+    width: 82px; height: 82px;
+    border-radius: 50%;
+    border: 1px solid var(--mint);
+    background: rgba(146,248,186,0.10);
+    display: flex; align-items: center; justify-content: center;
+    transition: background var(--dur-med) var(--ease-out), transform var(--dur-med) var(--ease-out);
+  }
+  .video-frame .placeholder:hover .play { background: var(--mint); transform: scale(1.04); }
+  .video-frame .play svg { display: block; margin-left: 5px; }
+  .video-frame .play path { fill: var(--mint); transition: fill var(--dur-med) var(--ease-out); }
+  .video-frame .placeholder:hover .play path { fill: var(--racing-blue); }
+  .video-frame .poster-cap {
+    text-align: center;
+    color: var(--white);
+  }
+  .video-frame .poster-cap .t {
+    font-weight: 600;
+    font-size: 15px;
+    letter-spacing: 0.02em;
+  }
+  .video-frame .poster-cap .s {
+    font-weight: 300;
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--mint);
+    margin-top: 8px;
+  }
+  .video-frame iframe,
+  .video-frame video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    background: var(--racing-blue);
+  }
+
   /* ---------- Section -------------------------------------------- */
 
   section.cat {
@@ -735,6 +848,7 @@
     section.cat { padding: 48px 0 16px; }
     .gate-title { font-size: 32px; }
     .gate-form { flex-direction: column; }
+    .video-block { padding: 40px 0 8px; }
   }
 
   /* ---------- Print -------------------------------------------- */
@@ -745,6 +859,7 @@
     .top-meta, .page-orient { color: var(--racing-blue) !important; }
     .wordmark-link { color: var(--racing-blue) !important; }
     .catnav { position: static; }
+    .video-block { display: none; }
     .doc { break-inside: avoid; }
     .btn-open { background: transparent; border: 1px solid var(--racing-blue); }
     h1.page-title, .page-orient { color: var(--racing-blue) !important; }
@@ -796,7 +911,7 @@
         <h1 class="page-title">This is the whole business.</h1>
         <p class="page-orient">
           Confidential. <span class="mint">For named investors only.</span> All materials provided under NDA.
-          6&nbsp;categories, 23&nbsp;documents. The complete data room in one place.
+          6&nbsp;categories, 25&nbsp;documents. The complete data room in one place.
         </p>
       </div>
     </div>
@@ -816,11 +931,11 @@
 
 <nav class="catnav" aria-label="Categories">
   <div class="container catnav-inner">
-    <a href="#cat-1" data-cat="cat-1"><span class="num">01</span><span class="label">Start Here | The Pitch</span></a>
-    <a href="#cat-2" data-cat="cat-2"><span class="num">02</span><span class="label">The Business</span></a>
-    <a href="#cat-3" data-cat="cat-3"><span class="num">03</span><span class="label">Market &amp; Strategy</span></a>
-    <a href="#cat-4" data-cat="cat-4"><span class="num">04</span><span class="label">Markets &amp; Operations</span></a>
-    <a href="#cat-5" data-cat="cat-5"><span class="num">05</span><span class="label">Wagering &amp; Compliance</span></a>
+    <a href="#cat-1" data-cat="cat-1"><span class="num">01</span><span class="label">Start Here. The 20 Minute Read</span></a>
+    <a href="#cat-2" data-cat="cat-2"><span class="num">02</span><span class="label">Team &amp; Execution</span></a>
+    <a href="#cat-3" data-cat="cat-3"><span class="num">03</span><span class="label">The Business. Economics &amp; Returns</span></a>
+    <a href="#cat-4" data-cat="cat-4"><span class="num">04</span><span class="label">Market, Fans &amp; Media</span></a>
+    <a href="#cat-5" data-cat="cat-5"><span class="num">05</span><span class="label">Markets, Regulation &amp; Wagering</span></a>
     <a href="#cat-6" data-cat="cat-6"><span class="num">06</span><span class="label">Corporate, Governance &amp; Risk</span></a>
   </div>
 </nav>
@@ -829,13 +944,41 @@
   <div class="toolbar">
     <label class="search">
       <span class="glyph" aria-hidden="true">⌕</span>
-      <input id="q" type="search" placeholder="Search documents (title, description, file type)" autocomplete="off">
+      <input id="q" type="search" placeholder="Search documents" autocomplete="off">
     </label>
     <div class="toolbar-meta">
-      <span>Showing<span class="v num" id="count-shown">23</span></span>
+      <span>Showing<span class="v num" id="count-shown">25</span></span>
       <span>Categories<span class="v num">6</span></span>
     </div>
   </div>
+</div>
+
+<!-- ============================================================
+     VIDEO BRIEFING (16:9)
+     To go live: set data-embed on .video-frame to either a direct
+     video file URL (…/briefing.mp4, .webm, .mov) or a YouTube/Vimeo
+     embed URL (e.g. https://www.youtube.com/embed/VIDEO_ID?autoplay=1).
+     ============================================================ -->
+<div class="container">
+  <section class="video-block" aria-label="Video briefing">
+    <div class="video-head">
+      <div>
+        <div class="eyebrow">Investor Briefing</div>
+        <p class="lead-line">A short walkthrough of the opportunity. Watch this before opening the files.</p>
+      </div>
+    </div>
+    <div class="video-frame" id="video-frame" data-embed="">
+      <div class="placeholder" id="video-placeholder" role="button" tabindex="0" aria-label="Play video briefing">
+        <span class="play" aria-hidden="true">
+          <svg width="26" height="30" viewBox="0 0 26 30"><path d="M0 0 L26 15 L0 30 Z"></path></svg>
+        </span>
+        <div class="poster-cap">
+          <div class="t">Play the investor briefing</div>
+          <div class="s">Watch first</div>
+        </div>
+      </div>
+    </div>
+  </section>
 </div>
 
 <main class="container" id="main"></main>
@@ -937,62 +1080,64 @@
      ============================================================ */
   const DATA = [
     {
-      id: "cat-1", num: "01", title: "Start Here | The Pitch",
-      desc: "The first touch documents. Read these first.",
+      id: "cat-1", num: "01", title: "Start Here. The 20 Minute Read",
+      desc: "The first documents to open. Read these for the full picture in 20 minutes.",
       docs: [
-        { t: "Executive Teaser",        d: "The 60 second read. What Galoprix is, why now, and the ask.",                      ext: "PDF",  pages: "2 pp",  size: "0.4 MB" },
-        { t: "One Page Fact Sheet",     d: "Single page reference covering format, market, model and Season 1.",               ext: "PDF",  pages: "1 p",   size: "0.2 MB" },
-        { t: "Full Investor Deck",      d: "The complete pitch: thesis, format, commercial architecture, traction.",           ext: "PDF",  pages: "84 pp", size: "12.4 MB" },
-        { t: "Exit Valuation Deck",     d: "Comparator led valuation thesis and exit pathway analysis.",                       ext: "PDF",  pages: "32 pp", size: "4.8 MB" },
+        { t: "Executive Teaser",      d: "The short read. What Galoprix is, why now and the ask.",                                  ext: "DOCX", url: "https://docs.google.com/document/d/11HPHS8LHTxYYDSz9g9G4aDCkGfRVpUEu/edit?usp=drive_link" },
+        { t: "Investor Presentation", d: "The full pitch. Thesis, format, commercial architecture and traction.",                    ext: "PDF",  url: "https://drive.google.com/file/d/1P6Lv-MSGT-X2q7q5dAGU1-GNs5bV6yoH/view?usp=drive_link" },
+        { t: "Seed Round Fact Sheet", d: "One page on the round. Terms, format, market and use of funds.",                           ext: "DOCX", url: "https://docs.google.com/document/d/1emTqRYIfSc2WDMlTENy5L4mRexTO9v5q/edit?usp=drive_link" },
+        { t: "Financial Snapshot",    d: "The headline numbers. Revenue build, cost base and the seed ask.",                         ext: "DOCX", url: "https://docs.google.com/document/d/1T_p0Daa1O8Z1hR1rtApGGt6U3PHno6_c/edit?usp=drive_link" },
+        { t: "Investor FAQ",          d: "The diligence questions, answered ahead of time. Format, commercial, financial and team.",  ext: "DOCX", url: "https://docs.google.com/document/d/1KQTQeC4iErBzUK5LFkDF_kzz2wtVbPNF/edit?usp=drive_link" },
       ],
     },
     {
-      id: "cat-2", num: "02", title: "The Business",
-      desc: "Commercial logic, financial model, franchise economics.",
+      id: "cat-2", num: "02", title: "Team & Execution",
+      desc: "Who is building this, and the path from today to Season 1.",
       docs: [
-        { t: "Business Model Memorandum",                   d: "Revenue architecture, commercial sequencing, and the financial logic explained.", ext: "PDF",  pages: "48 pp",      size: "3.2 MB" },
-        { t: "Franchise Model | Investor Overview",         d: "Dual ownership structure, three stage rights framework, fee model and exit terms.", ext: "PDF",  pages: "36 pp",      size: "2.6 MB" },
-        { t: "8 Year Financial Model | Strategic Markets",  d: "Full P&L, revenue build, cost build, headcount and scenario engine through 2034.", ext: "XLSX", pages: "14 sheets",  size: "5.1 MB" },
-        { t: "Franchise Owner P&L",                         d: "Per nation operator economics: the financial case for a franchise buyer.",        ext: "XLSX", pages: "8 sheets",   size: "1.4 MB" },
-        { t: "Season 1 Per Event Budget",                   d: "Event level cost breakdown for the ten Season 1 race days.",                        ext: "XLSX", pages: "11 sheets",  size: "2.0 MB" },
+        { t: "Team Slide",        d: "Founders, leadership and the operating bench behind Galoprix.", ext: "PDF",  url: "https://drive.google.com/file/d/1Qb9uIJo_xXCtBOcvYZokYa0uWfqr3zxZ/view?usp=drive_link" },
+        { t: "Roadmap to Launch", d: "The execution plan and the milestone timeline to Season 1.",    ext: "XLSX", url: "https://docs.google.com/spreadsheets/d/1Kp2yk2bjH5qMHeOaKDeVinuqraAXwPJq/edit?usp=drive_link" },
       ],
     },
     {
-      id: "cat-3", num: "03", title: "Market & Strategy",
-      desc: "Macro environment, fan strategy, media rights.",
+      id: "cat-3", num: "03", title: "The Business. Economics & Returns",
+      desc: "The commercial logic, the financial model, franchise economics and the exit thesis.",
       docs: [
-        { t: "Macro Environment Brief",   d: "External environment assessment: political, economic, social, technological.",                   ext: "PDF",  pages: "22 pp", size: "1.8 MB" },
-        { t: "Fan Engagement Strategy",   d: "Audience architecture and the route to direct fan relationship.",                                ext: "PDF",  pages: "28 pp", size: "2.4 MB" },
-        { t: "Media Rights Strategy",     d: "Streaming first, linear layered. The path from Season 1 viewership to Season 3 rights cycle.",   ext: "PDF",  pages: "34 pp", size: "3.0 MB" },
+        { t: "Business Model Memorandum",           d: "Revenue architecture, commercial sequencing and the financial logic.",                 ext: "DOCX", url: "https://docs.google.com/document/d/1KVRCEXgMyFyzILI-eLaKodwVftsX9S4O/edit?usp=drive_link" },
+        { t: "Franchise Model. Investor Overview",  d: "Dual ownership structure, the 3 stage rights framework, the fee model and exit terms.", ext: "DOCX", url: "https://docs.google.com/document/d/1n5fqsoqOSqkHBv-J1jP7qWU7B8Og2ycE/edit?usp=drive_link" },
+        { t: "Financial Narrative",                 d: "The numbers in prose. How the model builds and what drives it.",                        ext: "DOCX", url: "https://docs.google.com/document/d/1dOkXv8l1sh5UpsY3SPuM1xH0zK7N55MD/edit?usp=drive_link" },
+        { t: "8 Year Financial Model. Seed",        d: "Full profit and loss, revenue build, cost build, headcount and the scenario engine.",  ext: "XLSX", url: "https://docs.google.com/spreadsheets/d/12Gij8rSukH_9FC3Dc435orLxNt9YKqKi/edit?usp=drive_link" },
+        { t: "Season 1 Event Budget",               d: "The event level cost breakdown for the Season 1 race days.",                            ext: "XLSX", url: "https://docs.google.com/spreadsheets/d/1F743njZapvNexTpBdD4fRxp4eHVV2pdT/edit?usp=drive_link" },
+        { t: "Use of Funds",                        d: "Where the seed capital goes, and the milestones it unlocks.",                           ext: "PDF",  url: "https://drive.google.com/file/d/1PF4dv5LjLGDL5MsSBH4XxSe2U1h_kbKZ/view?usp=drive_link" },
+        { t: "Exit Pathways & Valuation Framework", d: "The comparator led valuation thesis and the routes to exit.",                          ext: "PDF",  url: "https://drive.google.com/file/d/1-L-THx2_WW1P6f50f8U-jWQ8XtPkyQoT/view?usp=drive_link" },
       ],
     },
     {
-      id: "cat-4", num: "04", title: "Markets & Operations",
-      desc: "Territory analysis, regulatory landscape, venue selection.",
+      id: "cat-4", num: "04", title: "Market, Fans & Media",
+      desc: "The macro backdrop, the competitive field and the route to a fan relationship.",
       docs: [
-        { t: "Regulatory & Licensing Market Overview", d: "18 market deep dive on racing authorities, leverage points and engagement strategy.",  ext: "PDF",  pages: "76 pp",     size: "8.2 MB" },
-        { t: "Investor Matrix | All Nations",          d: "Capital landscape across the founding 10 and expansion candidates.",                   ext: "XLSX", pages: "6 sheets",  size: "1.1 MB" },
-        { t: "Venue Weighting",                        d: "How Season 1 host venues were selected and weighted.",                                  ext: "PDF",  pages: "18 pp",     size: "1.5 MB" },
+        { t: "Macro Environment Brief",        d: "The external environment. Political, economic, social and technological.", ext: "DOCX", url: "https://docs.google.com/document/d/1rOUVFYGrQDr2Mcq3_zriQJIqd3xa5bcV/edit?usp=drive_link" },
+        { t: "Competitive Landscape",          d: "Where Galoprix sits against adjacent sports, media and wagering products.", ext: "DOCX", url: "https://docs.google.com/document/d/1AVxnr_gDGq6VMBwgqSe-a2OCfdDOQ2Ff/edit?usp=drive_link" },
+        { t: "Fan Engagement & Brand Strategy", d: "The audience architecture and the route to a direct fan relationship.",    ext: "DOCX", url: "https://docs.google.com/document/d/1diqnw-j8yr-z9mFmA4xUSMowllJyeR4B/edit?usp=drive_link" },
+        { t: "Welfare Framework",              d: "The welfare first commitment behind the format and the brand.",             ext: "DOCX", url: "https://docs.google.com/document/d/1gK92bDJw3w5tTcAzpjK16q5m2QrYJxGO/edit?usp=drive_link" },
       ],
     },
     {
-      id: "cat-5", num: "05", title: "Wagering & Compliance",
-      desc: "Wagering architecture, AML and responsible gambling.",
+      id: "cat-5", num: "05", title: "Markets, Regulation & Wagering",
+      desc: "The wagering architecture, AML and responsible gambling, and the welfare foundation.",
       docs: [
-        { t: "Wagering Architecture & Data Rights",   d: "The 3 layer wagering model, PGI partnership and source controlled data rights.", ext: "PDF",  pages: "42 pp", size: "3.6 MB" },
-        { t: "AML & Responsible Gambling Framework",  d: "Compliance posture across jurisdictions and the responsible gambling framework.",     ext: "PDF",  pages: "30 pp", size: "2.2 MB" },
+        { t: "Wagering Architecture & Data Rights",  d: "The layered wagering model, the partnerships and source controlled data rights.",   ext: "DOCX", url: "https://docs.google.com/document/d/1lcsuFxZC9L3LKUgKTMa3REi3J2Ql0O_v/edit?usp=drive_link" },
+        { t: "AML & Responsible Gambling Framework", d: "The compliance posture across jurisdictions and the responsible gambling framework.", ext: "DOCX", url: "https://docs.google.com/document/d/1_yMbAfc3CJegxjX-NQcoC0xtOgh1HHbR/edit?usp=drive_link" },
+        { t: "Welfare Framework & Foundation",       d: "The governing welfare framework and the independent foundation behind it.",           ext: "DOCX", url: "https://docs.google.com/document/d/1FsSEkKzCTycDeKJo2mTDe94b9LtfxiJT/edit?usp=drive_link" },
       ],
     },
     {
       id: "cat-6", num: "06", title: "Corporate, Governance & Risk",
-      desc: "Legal structure, governance, risk, IP, FAQ.",
+      desc: "The legal structure, governance, intellectual property and the risk register.",
       docs: [
-        { t: "Corporate Structure",  d: "Registered entity, ownership and proposed post investment architecture.",                                        ext: "PDF",  pages: "14 pp",     size: "1.0 MB" },
-        { t: "Governance Framework", d: "Board composition, reserved matters, investor rights and reporting cadence.",                                    ext: "DOCX", pages: "20 pp",     size: "0.6 MB" },
-        { t: "Risk Register",        d: "The full risk matrix: commercial, operational, regulatory, financial.",                                          ext: "XLSX", pages: "4 sheets",  size: "0.8 MB" },
-        { t: "IP Register",          d: "Trademarks, domains, format documentation and brand asset ownership.",                                           ext: "XLSX", pages: "3 sheets",  size: "0.5 MB" },
-        { t: "Investor FAQ",         d: "Pre-empted due diligence questions across format, commercial, financial, regulatory and team.",                  ext: "PDF",  pages: "26 pp",     size: "1.6 MB" },
-        { t: "Data Room Tracker",    d: "Index of every document in the data room with version control and last updated dates.",                           ext: "XLSX", pages: "1 sheet",   size: "0.3 MB" },
+        { t: "Corporate Structure",    d: "The registered entity, ownership and the proposed architecture after investment.", ext: "DOCX", url: "https://docs.google.com/document/d/1osbV8rJQKBYWgTJaETqd28wcVpWljRxn/edit?usp=drive_link" },
+        { t: "Governance Framework",   d: "Board composition, reserved matters, investor rights and the reporting cadence.",  ext: "DOCX", url: "https://docs.google.com/document/d/1uG041ZY1DddikHvp_WCK2iW66Uvt6qL4/edit?usp=drive_link" },
+        { t: "IP Protection Strategy", d: "Trademarks, domains, format documentation and brand asset ownership.",             ext: "DOCX", url: "https://docs.google.com/document/d/1IskWAEsI4woSqFmHIpxF9hn-lbyOXrqn/edit?usp=drive_link" },
+        { t: "Risk Register",          d: "The full risk matrix. Commercial, operational, regulatory and financial.",         ext: "XLSX", url: "https://docs.google.com/spreadsheets/d/1vID3oGuKIajphVGJqPSm8_mzwRhiq-rI/edit?usp=drive_link" },
       ],
     },
   ];
@@ -1040,9 +1185,9 @@
         <h3 class="doc-title">${doc.t}</h3>
         <p class="doc-desc">${doc.d}</p>
         <div class="doc-foot">
-          <button class="btn-open" type="button" aria-label="Open ${doc.t}">
-            Open Document <span class="arr" aria-hidden="true">→</span>
-          </button>
+          <a class="btn-open" href="${doc.url}" target="_blank" rel="noopener noreferrer" aria-label="Open ${doc.t} (opens in a new tab)">
+            Open Document <span class="arr" aria-hidden="true">↗</span>
+          </a>
         </div>
       `;
       grid.appendChild(card);
@@ -1105,6 +1250,52 @@
     btn.style.opacity = "0.6";
     setTimeout(() => { btn.style.opacity = ""; }, 220);
   });
+
+  /* ============================================================
+     VIDEO BRIEFING — swap poster for the player on play
+     Wire it up by setting data-embed on #video-frame to either:
+       • a direct video file  (…/briefing.mp4, .webm, .mov)  → <video>
+       • a YouTube/Vimeo embed URL                           → <iframe>
+     ============================================================ */
+  const vFrame = document.getElementById("video-frame");
+  const vPlaceholder = document.getElementById("video-placeholder");
+
+  function playVideo() {
+    const src = (vFrame.getAttribute("data-embed") || "").trim();
+    if (!src) {
+      // No source wired yet — nudge the placeholder so it's clearly interactive.
+      vFrame.animate(
+        [{ transform: "translateX(0)" }, { transform: "translateX(-4px)" }, { transform: "translateX(4px)" }, { transform: "translateX(0)" }],
+        { duration: 260, easing: "ease-in-out" }
+      );
+      return;
+    }
+    const isFile = /\.(mp4|webm|ogg|ogv|mov|m4v)(\?.*)?$/i.test(src);
+    let player;
+    if (isFile) {
+      player = document.createElement("video");
+      player.src = src;
+      player.controls = true;
+      player.autoplay = true;
+      player.playsInline = true;
+      player.setAttribute("controlsList", "nodownload");
+    } else {
+      player = document.createElement("iframe");
+      player.src = src;
+      player.title = "Galoprix Investor Briefing";
+      player.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+      player.allowFullscreen = true;
+    }
+    vFrame.innerHTML = "";
+    vFrame.appendChild(player);
+  }
+
+  if (vPlaceholder) {
+    vPlaceholder.addEventListener("click", playVideo);
+    vPlaceholder.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); playVideo(); }
+    });
+  }
 </script>
 </body>
 </html>
