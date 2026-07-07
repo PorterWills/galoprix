@@ -458,45 +458,6 @@
   .video-block {
     padding: 56px 0 8px;
   }
-  .video-head {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 24px;
-    margin-bottom: 20px;
-    flex-wrap: wrap;
-  }
-  .video-head .eyebrow {
-    color: var(--racing-blue);
-    font-weight: 600;
-    font-size: 11px;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-  }
-  .video-head .lead-line {
-    font-weight: 300;
-    font-size: 15px;
-    color: rgba(1,1,37,0.65);
-    margin: 6px 0 0;
-    max-width: 640px;
-  }
-  .video-head h2 {
-    font-family: var(--font-sans);
-    font-weight: 600;
-    font-size: clamp(24px, 2.6vw, 32px);
-    letter-spacing: -0.01em;
-    margin: 0;
-    color: var(--racing-blue);
-  }
-  .video-head .runtime {
-    font-size: 11px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    font-weight: 600;
-    color: rgba(1,1,37,0.45);
-    white-space: nowrap;
-  }
-  .video-head .runtime .v { color: var(--racing-blue); margin-left: 6px; }
 
   .video-frame {
     position: relative;
@@ -506,31 +467,40 @@
     border: 1px solid var(--rule-on-white);
     overflow: hidden;
   }
-  /* subtle placeholder stripes behind the poster */
+  /* Homepage image as the poster/thumbnail, with a scrim for the play button */
   .video-frame .placeholder {
     position: absolute;
     inset: 0;
-    background-image: repeating-linear-gradient(
-      -45deg,
-      rgba(146,248,186,0.06) 0,
-      rgba(146,248,186,0.06) 1px,
-      transparent 1px,
-      transparent 12px
-    );
+    background-image:
+      linear-gradient(rgba(1,1,37,0.32), rgba(1,1,37,0.42)),
+      url("/Galoprix.jpeg");
+    background-size: cover, cover;
+    background-position: center, center 60%;
+    background-repeat: no-repeat, no-repeat;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 22px;
     cursor: pointer;
+    transition: background-color var(--dur-med) var(--ease-out);
+  }
+  .video-frame .placeholder::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(1,1,37,0);
     transition: background var(--dur-med) var(--ease-out);
   }
-  .video-frame .placeholder:hover { background: rgba(146,248,186,0.04); }
+  .video-frame .placeholder:hover::after { background: rgba(1,1,37,0.12); }
   .video-frame .play {
+    position: relative;
+    z-index: 1;
     width: 82px; height: 82px;
     border-radius: 50%;
     border: 1px solid var(--mint);
-    background: rgba(146,248,186,0.10);
+    background: rgba(1,1,37,0.35);
+    backdrop-filter: blur(2px);
     display: flex; align-items: center; justify-content: center;
     transition: background var(--dur-med) var(--ease-out), transform var(--dur-med) var(--ease-out);
   }
@@ -538,23 +508,6 @@
   .video-frame .play svg { display: block; margin-left: 5px; }
   .video-frame .play path { fill: var(--mint); transition: fill var(--dur-med) var(--ease-out); }
   .video-frame .placeholder:hover .play path { fill: var(--racing-blue); }
-  .video-frame .poster-cap {
-    text-align: center;
-    color: var(--white);
-  }
-  .video-frame .poster-cap .t {
-    font-weight: 600;
-    font-size: 15px;
-    letter-spacing: 0.02em;
-  }
-  .video-frame .poster-cap .s {
-    font-weight: 300;
-    font-size: 12px;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--mint);
-    margin-top: 8px;
-  }
   .video-frame iframe,
   .video-frame video {
     position: absolute;
