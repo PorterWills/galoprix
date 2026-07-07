@@ -472,7 +472,7 @@
     position: absolute;
     inset: 0;
     background-image:
-      linear-gradient(rgba(1,1,37,0.32), rgba(1,1,37,0.42)),
+      radial-gradient(circle at 50% 50%, rgba(1,1,37,0.42) 0%, rgba(1,1,37,0.12) 24%, rgba(1,1,37,0) 46%),
       url("/Galoprix.jpeg");
     background-size: cover, cover;
     background-position: center, center 60%;
@@ -485,28 +485,28 @@
     cursor: pointer;
     transition: background-color var(--dur-med) var(--ease-out);
   }
-  .video-frame .placeholder::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: rgba(1,1,37,0);
-    transition: background var(--dur-med) var(--ease-out);
-  }
-  .video-frame .placeholder:hover::after { background: rgba(1,1,37,0.12); }
   .video-frame .play {
     position: relative;
     z-index: 1;
-    width: 82px; height: 82px;
+    width: 58px; height: 58px;
     border-radius: 50%;
-    border: 1px solid var(--mint);
-    background: rgba(1,1,37,0.35);
-    backdrop-filter: blur(2px);
+    border: 1px solid rgba(255,255,255,0.65);
+    background: rgba(1,1,37,0.28);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 6px 22px rgba(1,1,37,0.35);
     display: flex; align-items: center; justify-content: center;
-    transition: background var(--dur-med) var(--ease-out), transform var(--dur-med) var(--ease-out);
+    transition: background var(--dur-med) var(--ease-out),
+                border-color var(--dur-med) var(--ease-out),
+                transform var(--dur-med) var(--ease-out);
   }
-  .video-frame .placeholder:hover .play { background: var(--mint); transform: scale(1.04); }
-  .video-frame .play svg { display: block; margin-left: 5px; }
-  .video-frame .play path { fill: var(--mint); transition: fill var(--dur-med) var(--ease-out); }
+  .video-frame .placeholder:hover .play {
+    background: var(--mint);
+    border-color: var(--mint);
+    transform: scale(1.06);
+  }
+  .video-frame .play svg { display: block; width: 17px; height: 20px; margin-left: 3px; }
+  .video-frame .play path { fill: var(--white); transition: fill var(--dur-med) var(--ease-out); }
   .video-frame .placeholder:hover .play path { fill: var(--racing-blue); }
   .video-frame iframe,
   .video-frame video {
