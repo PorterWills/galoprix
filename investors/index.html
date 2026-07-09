@@ -334,7 +334,7 @@
     position: sticky;
     top: 0;
     z-index: 30;
-    background: rgba(1,1,37,0.05);
+    background: #f2f2f4;               /* opaque — must not reveal content behind the sticky bar */
     border-top: 1px solid var(--rule-on-white);
     border-bottom: 2px solid var(--racing-blue);
   }
@@ -343,9 +343,35 @@
     align-items: stretch;
     gap: 0;
     overflow-x: auto;
+    scroll-behavior: smooth;
     scrollbar-width: none;
   }
   .catnav-inner::-webkit-scrollbar { display: none; }
+
+  /* Scroll affordance: sticky arrows pinned to each edge of the scroll area */
+  .catnav-arrow {
+    position: sticky;
+    z-index: 4;
+    flex: 0 0 auto;
+    align-self: stretch;
+    width: 46px;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--racing-blue);
+    background: var(--white);
+    font-family: var(--font-sans);
+    font-size: 20px;
+    line-height: 1;
+    transition: background var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out);
+  }
+  .catnav-arrow.left  { left: 0;  box-shadow: 10px 0 14px -6px rgba(1,1,37,0.28); }
+  .catnav-arrow.right { right: 0; box-shadow: -10px 0 14px -6px rgba(1,1,37,0.28); }
+  .catnav-arrow:hover { background: var(--mint); color: var(--racing-blue); }
+  .catnav-arrow[hidden] { display: none; }
 
   .catnav-label {
     display: flex;
@@ -390,7 +416,7 @@
     letter-spacing: 0;
     color: var(--racing-blue);
   }
-  .catnav a:hover { background: rgba(146,248,186,0.14); }
+  .catnav a:hover { background: #e9fdf1; }   /* opaque light mint */
   .catnav a.active { background: var(--white); }
   .catnav a.active::after {
     content: "";
@@ -977,6 +1003,7 @@
 
 <nav class="catnav" aria-label="Categories">
   <div class="container catnav-inner">
+    <button class="catnav-arrow left" id="catnav-prev" type="button" aria-label="Scroll categories left" hidden>‹</button>
     <span class="catnav-label" aria-hidden="true">Jump to</span>
     <a href="#cat-1" data-cat="cat-1"><span class="num">01</span><span class="label">Start Here. The 20 Minute Read</span></a>
     <a href="#cat-2" data-cat="cat-2"><span class="num">02</span><span class="label">Team &amp; Execution</span></a>
@@ -985,6 +1012,7 @@
     <a href="#cat-5" data-cat="cat-5"><span class="num">05</span><span class="label">Markets, Regulation &amp; Wagering</span></a>
     <a href="#cat-6" data-cat="cat-6"><span class="num">06</span><span class="label">Corporate, Governance &amp; Risk</span></a>
     <a href="#cat-7" data-cat="cat-7"><span class="num">07</span><span class="label">Detailed Models &amp; Analysis</span></a>
+    <button class="catnav-arrow right" id="catnav-next" type="button" aria-label="Scroll categories right">›</button>
   </div>
 </nav>
 
@@ -1152,6 +1180,9 @@
     sessionStorage.setItem("idr_unlocked", "1");
     document.body.classList.remove("locked");
     gate.classList.add("hidden");
+    // The data room was display:none while locked, so anything that measured
+    // layout (e.g. the category-nav scroll arrows) needs a re-measure now.
+    window.dispatchEvent(new Event("resize"));
   }
   function lock() {
     sessionStorage.removeItem("idr_unlocked");
@@ -1356,6 +1387,34 @@
       }
     });
   });
+
+  /* ---- Category nav horizontal scroll affordance ---- */
+  const catnavInner = document.querySelector(".catnav-inner");
+  const catnavPrev  = document.getElementById("catnav-prev");
+  const catnavNext  = document.getElementById("catnav-next");
+  if (catnavInner && catnavPrev && catnavNext) {
+    const syncArrows = () => {
+      const max = catnavInner.scrollWidth - catnavInner.clientWidth;
+      if (max <= 2) {                       // everything fits — no scrolling needed
+        catnavPrev.hidden = true;
+        catnavNext.hidden = true;
+        return;
+      }
+      catnavPrev.hidden = catnavInner.scrollLeft <= 2;
+      catnavNext.hidden = catnavInner.scrollLeft >= max - 2;
+    };
+    const nudge = (dir) => {
+      catnavInner.scrollBy({ left: dir * catnavInner.clientWidth * 0.7, behavior: "smooth" });
+    };
+    catnavPrev.addEventListener("click", () => nudge(-1));
+    catnavNext.addEventListener("click", () => nudge(1));
+    catnavInner.addEventListener("scroll", syncArrows, { passive: true });
+    window.addEventListener("resize", syncArrows);
+    syncArrows();
+    // Re-measure once the web font loads (it widens the tabs into overflow).
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(syncArrows);
+    window.addEventListener("load", syncArrows);
+  }
 
   document.addEventListener("click", (e) => {
     const btn = e.target.closest(".btn-open");
