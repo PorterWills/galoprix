@@ -334,8 +334,9 @@
     position: sticky;
     top: 0;
     z-index: 30;
-    background: var(--white);
-    border-bottom: 1px solid var(--rule-on-white);
+    background: rgba(1,1,37,0.05);
+    border-top: 1px solid var(--rule-on-white);
+    border-bottom: 2px solid var(--racing-blue);
   }
   .catnav-inner {
     display: flex;
@@ -346,9 +347,26 @@
   }
   .catnav-inner::-webkit-scrollbar { display: none; }
 
+  .catnav-label {
+    display: flex;
+    align-items: center;
+    padding: 16px 20px;
+    font-weight: 600;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(1,1,37,0.55);
+    white-space: nowrap;
+    flex: 0 0 auto;
+    background: var(--white);
+    border-left: 1px solid var(--rule-on-white);
+    border-right: 1px solid var(--rule-on-white);
+  }
+
   .catnav a {
     flex: 1 1 auto;
     padding: 16px 18px;
+    background: var(--white);
     border-right: 1px solid var(--rule-on-white);
     display: flex;
     align-items: baseline;
@@ -359,11 +377,10 @@
     transition: background var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out);
     position: relative;
   }
-  .catnav a:first-child { border-left: 1px solid var(--rule-on-white); }
   .catnav a .num {
     font-weight: 600;
     font-size: 10px;
-    color: rgba(1,1,37,0.45);
+    color: rgba(1,1,37,0.5);
     font-variant-numeric: tabular-nums;
     letter-spacing: 0.06em;
   }
@@ -371,14 +388,16 @@
     font-weight: 600;
     font-size: 12px;
     letter-spacing: 0;
+    color: var(--racing-blue);
   }
-  .catnav a:hover { background: rgba(1,1,37,0.04); }
+  .catnav a:hover { background: rgba(146,248,186,0.14); }
+  .catnav a.active { background: var(--white); }
   .catnav a.active::after {
     content: "";
     position: absolute;
-    left: 0; right: 0; bottom: -1px;
-    height: 2px;
-    background: var(--racing-blue);
+    left: 0; right: 0; bottom: -2px;
+    height: 3px;
+    background: var(--mint);
   }
   .catnav a.active .num { color: var(--racing-blue); }
 
@@ -388,12 +407,13 @@
     to   { clip-path: inset(0 0 0 0);     opacity: 1; }
   }
   .catnav a { animation: catnav-wipe 520ms var(--ease-out) both; }
-  .catnav a:nth-child(1) { animation-delay:  80ms; }
-  .catnav a:nth-child(2) { animation-delay: 160ms; }
-  .catnav a:nth-child(3) { animation-delay: 240ms; }
-  .catnav a:nth-child(4) { animation-delay: 320ms; }
-  .catnav a:nth-child(5) { animation-delay: 400ms; }
-  .catnav a:nth-child(6) { animation-delay: 480ms; }
+  .catnav a:nth-of-type(1) { animation-delay:  80ms; }
+  .catnav a:nth-of-type(2) { animation-delay: 160ms; }
+  .catnav a:nth-of-type(3) { animation-delay: 240ms; }
+  .catnav a:nth-of-type(4) { animation-delay: 320ms; }
+  .catnav a:nth-of-type(5) { animation-delay: 400ms; }
+  .catnav a:nth-of-type(6) { animation-delay: 480ms; }
+  .catnav a:nth-of-type(7) { animation-delay: 560ms; }
   @media (prefers-reduced-motion: reduce) {
     .catnav a { animation: none; }
   }
@@ -714,6 +734,70 @@
   .doc.hidden { display: none; }
   section.cat.empty { display: none; }
 
+  /* ---------- Category 7 — request models (distinct treatment) --- */
+
+  .req-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+  }
+  .req-tile {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 18px 18px 16px;
+    background: rgba(146,248,186,0.09);
+    border: 1px solid rgba(146,248,186,0.55);
+    border-radius: 4px;
+    min-height: 132px;
+    transition: background var(--dur-fast) var(--ease-out),
+                border-color var(--dur-fast) var(--ease-out),
+                transform var(--dur-fast) var(--ease-out);
+  }
+  .req-tile:hover,
+  .req-tile:focus-visible {
+    background: var(--mint);
+    border-color: var(--mint);
+    transform: translateY(-2px);
+    outline: none;
+  }
+  .req-num {
+    font-weight: 600;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: rgba(1,1,37,0.5);
+    font-variant-numeric: tabular-nums;
+  }
+  .req-name {
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 1.3;
+    letter-spacing: -0.005em;
+    color: var(--racing-blue);
+    flex: 1;
+    text-wrap: balance;
+  }
+  .req-name .req-sub {
+    font-weight: 300;
+    color: rgba(1,1,37,0.55);
+  }
+  .req-tile:hover .req-name .req-sub,
+  .req-tile:focus-visible .req-name .req-sub { color: rgba(1,1,37,0.7); }
+  .req-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+    font-size: 10.5px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--racing-blue);
+  }
+  .req-cta .arr { font-weight: 300; font-size: 13px; letter-spacing: 0; }
+
+  /* ---------- Hide during document search ----------------------- */
+  .search-hidden { display: none !important; }
+
   /* ---------- Footer -------------------------------------------- */
 
   footer.bottom {
@@ -791,6 +875,7 @@
     .foot-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
     .cat-head { grid-template-columns: 1fr; }
     .cat-count { text-align: left; }
+    .req-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   }
   @media (max-width: 640px) {
     .container { padding: 0 20px; }
@@ -798,6 +883,8 @@
     .doc-grid { grid-template-columns: 1fr; }
     .doc-grid .doc { border-right: 0 !important; }
     .doc { min-height: 0; }
+    .req-grid { grid-template-columns: 1fr; }
+    .req-tile { min-height: 0; }
     .title-block { padding: 40px 0 36px; }
     h1.page-title { font-size: 36px; }
     .toolbar { flex-direction: column; align-items: stretch; gap: 16px; }
@@ -841,7 +928,7 @@
       <button type="submit">Enter</button>
     </form>
     <p class="gate-error" id="gate-error" hidden>That access code didn't match. Please try again.</p>
-    <p class="gate-help">Need access? <a href="mailto:info@galoprix.com">info@galoprix.com</a></p>
+    <p class="gate-help">Need access? <a href="mailto:darragh@galoprix.com">darragh@galoprix.com</a></p>
   </div>
 </div>
 
@@ -867,10 +954,10 @@
     <div class="title-grid">
       <div>
         <div class="eyebrow-mint">Investor Data Room</div>
-        <h1 class="page-title">This is the whole business.</h1>
+        <h1 class="page-title">Ten nations. One championship. The complete case.</h1>
         <p class="page-orient">
           Confidential. <span class="mint">For named investors only.</span> All materials provided under NDA.
-          6&nbsp;categories, 25&nbsp;documents. The complete data room in one place.
+          7&nbsp;categories, 25&nbsp;documents plus deeper models on request. The complete data room in one place.
         </p>
       </div>
     </div>
@@ -882,7 +969,7 @@
     <div class="contact-inner">
       <span class="label">Contact</span>
       <span class="contact-item">
-        <a href="mailto:info@galoprix.com">info@galoprix.com</a>
+        <a href="mailto:darragh@galoprix.com">darragh@galoprix.com</a>
       </span>
     </div>
   </div>
@@ -890,12 +977,14 @@
 
 <nav class="catnav" aria-label="Categories">
   <div class="container catnav-inner">
+    <span class="catnav-label" aria-hidden="true">Jump to</span>
     <a href="#cat-1" data-cat="cat-1"><span class="num">01</span><span class="label">Start Here. The 20 Minute Read</span></a>
     <a href="#cat-2" data-cat="cat-2"><span class="num">02</span><span class="label">Team &amp; Execution</span></a>
     <a href="#cat-3" data-cat="cat-3"><span class="num">03</span><span class="label">The Business. Economics &amp; Returns</span></a>
     <a href="#cat-4" data-cat="cat-4"><span class="num">04</span><span class="label">Market, Fans &amp; Media</span></a>
     <a href="#cat-5" data-cat="cat-5"><span class="num">05</span><span class="label">Markets, Regulation &amp; Wagering</span></a>
     <a href="#cat-6" data-cat="cat-6"><span class="num">06</span><span class="label">Corporate, Governance &amp; Risk</span></a>
+    <a href="#cat-7" data-cat="cat-7"><span class="num">07</span><span class="label">Deeper Models. On Request</span></a>
   </div>
 </nav>
 
@@ -907,7 +996,7 @@
     </label>
     <div class="toolbar-meta">
       <span>Showing<span class="v num" id="count-shown">25</span></span>
-      <span>Categories<span class="v num">6</span></span>
+      <span>Categories<span class="v num">7</span></span>
     </div>
   </div>
 </div>
@@ -918,7 +1007,7 @@
      video file URL (…/briefing.mp4, .webm, .mov) or a YouTube/Vimeo
      embed URL (e.g. https://www.youtube.com/embed/VIDEO_ID?autoplay=1).
      ============================================================ -->
-<div class="container">
+<div class="container" id="video-wrap">
   <section class="video-block" aria-label="Video">
     <div class="video-frame" id="video-frame" data-embed="https://drive.google.com/file/d/1Gb4nAWfZvHnV78Dus2m4QQRJIVILR-ac/preview">
       <div class="placeholder" id="video-placeholder" role="button" tabindex="0" aria-label="Play video">
@@ -931,6 +1020,73 @@
 </div>
 
 <main class="container" id="main"></main>
+
+<!-- ============================================================
+     CATEGORY 7 — Deeper models, shared on request (distinct treatment)
+     ============================================================ -->
+<div class="container" id="request-wrap">
+  <section class="cat cat-request" id="cat-7" data-cat="cat-7">
+    <div class="cat-head">
+      <div>
+        <div class="cat-num">
+          <span class="index num">07</span>
+          <span>Category 7 of 7</span>
+        </div>
+        <h2 class="cat-title">Deeper Models. On Request</h2>
+        <p class="cat-desc">Proprietary models and analysis shared individually with named investors. Request any item and we'll send it across.</p>
+      </div>
+      <div class="cat-count"><span class="v num">9</span>models</div>
+    </div>
+    <div class="cat-rule"></div>
+    <div class="req-grid">
+      <a class="req-tile" href="mailto:darragh@galoprix.com?subject=Data%20Room%20request%3A%20Nation%2FFranchise%20Scoring%20Matrix">
+        <span class="req-num">01</span>
+        <span class="req-name">Nation / Franchise Scoring Matrix</span>
+        <span class="req-cta">Request <span class="arr" aria-hidden="true">↗</span></span>
+      </a>
+      <a class="req-tile" href="mailto:darragh@galoprix.com?subject=Data%20Room%20request%3A%20Venue%20Analysis%20%26%20Weighting">
+        <span class="req-num">02</span>
+        <span class="req-name">Venue Analysis &amp; Weighting</span>
+        <span class="req-cta">Request <span class="arr" aria-hidden="true">↗</span></span>
+      </a>
+      <a class="req-tile" href="mailto:darragh@galoprix.com?subject=Data%20Room%20request%3A%20Fixture%20Acquisition%20Strategy">
+        <span class="req-num">03</span>
+        <span class="req-name">Fixture Acquisition Strategy</span>
+        <span class="req-cta">Request <span class="arr" aria-hidden="true">↗</span></span>
+      </a>
+      <a class="req-tile" href="mailto:darragh@galoprix.com?subject=Data%20Room%20request%3A%20Pattern%20Race%20Elevation%20Roadmap">
+        <span class="req-num">04</span>
+        <span class="req-name">Pattern Race Elevation Roadmap</span>
+        <span class="req-cta">Request <span class="arr" aria-hidden="true">↗</span></span>
+      </a>
+      <a class="req-tile" href="mailto:darragh@galoprix.com?subject=Data%20Room%20request%3A%20Investor%20Operational%20Matrix%20(all%20nations)">
+        <span class="req-num">05</span>
+        <span class="req-name">Investor Operational Matrix <span class="req-sub">(all nations)</span></span>
+        <span class="req-cta">Request <span class="arr" aria-hidden="true">↗</span></span>
+      </a>
+      <a class="req-tile" href="mailto:darragh@galoprix.com?subject=Data%20Room%20request%3A%20Sponsorship%20Revenue%20Model">
+        <span class="req-num">06</span>
+        <span class="req-name">Sponsorship Revenue Model</span>
+        <span class="req-cta">Request <span class="arr" aria-hidden="true">↗</span></span>
+      </a>
+      <a class="req-tile" href="mailto:darragh@galoprix.com?subject=Data%20Room%20request%3A%20Wagering%20Revenue%20Model">
+        <span class="req-num">07</span>
+        <span class="req-name">Wagering Revenue Model</span>
+        <span class="req-cta">Request <span class="arr" aria-hidden="true">↗</span></span>
+      </a>
+      <a class="req-tile" href="mailto:darragh@galoprix.com?subject=Data%20Room%20request%3A%20Horse%20Owners%20%26%20Jockeys%20Prize%20Structure">
+        <span class="req-num">08</span>
+        <span class="req-name">Horse Owners &amp; Jockeys Prize Structure</span>
+        <span class="req-cta">Request <span class="arr" aria-hidden="true">↗</span></span>
+      </a>
+      <a class="req-tile" href="mailto:darragh@galoprix.com?subject=Data%20Room%20request%3A%20Jockey%20Eligibility%20Framework">
+        <span class="req-num">09</span>
+        <span class="req-name">Jockey Eligibility Framework</span>
+        <span class="req-cta">Request <span class="arr" aria-hidden="true">↗</span></span>
+      </a>
+    </div>
+  </section>
+</div>
 
 <div class="container">
   <div class="no-results" id="no-results">
@@ -957,13 +1113,13 @@
           <li>Galoprix Global Ventures Limited</li>
           <li>Registered in England &amp; Wales</li>
           <li>Co. No. 14872910</li>
-          <li>71–75 Shelton Street, London WC2H 9JQ</li>
+          <li>London</li>
         </ul>
       </div>
       <div>
         <h4>Contact</h4>
         <ul>
-          <li>info@galoprix.com</li>
+          <li>darragh@galoprix.com</li>
         </ul>
       </div>
     </div>
@@ -1104,7 +1260,7 @@
       <div>
         <div class="cat-num">
           <span class="index num">${cat.num}</span>
-          <span>Category ${parseInt(cat.num, 10)} of 6</span>
+          <span>Category ${parseInt(cat.num, 10)} of 7</span>
         </div>
         <h2 class="cat-title">${cat.title}</h2>
         <p class="cat-desc">${cat.desc}</p>
@@ -1149,12 +1305,20 @@
   const q          = document.getElementById("q");
   const countShown = document.getElementById("count-shown");
   const noResults  = document.getElementById("no-results");
+  const videoWrap  = document.getElementById("video-wrap");
+  const requestWrap= document.getElementById("request-wrap");
   countShown.textContent = document.querySelectorAll(".doc").length;
 
   function applyFilter() {
     const term = q.value.trim().toLowerCase();
+    const searching = term.length > 0;
+    // The video and the "on request" models aren't part of document search —
+    // hide them while a query is active so the results stand alone.
+    if (videoWrap)   videoWrap.classList.toggle("search-hidden", searching);
+    if (requestWrap) requestWrap.classList.toggle("search-hidden", searching);
+
     let shown = 0;
-    document.querySelectorAll("section.cat").forEach((sec) => {
+    document.querySelectorAll("section.cat:not(.cat-request)").forEach((sec) => {
       let secShown = 0;
       sec.querySelectorAll(".doc").forEach((card) => {
         const match = !term || card.dataset.search.includes(term);
