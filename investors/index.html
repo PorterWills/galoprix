@@ -823,6 +823,16 @@
 
   /* ---------- Hide during document search ----------------------- */
   .search-hidden { display: none !important; }
+  .req-group {
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(1,1,37,0.55);
+    margin: 28px 0 12px;
+  }
+  .cat-rule + .req-group { margin-top: 0; }
+  .btn-open.is-pending { opacity: 0.45; cursor: not-allowed; pointer-events: none; }
 
   /* ---------- Footer -------------------------------------------- */
 
@@ -980,10 +990,9 @@
     <div class="title-grid">
       <div>
         <div class="eyebrow-mint">Investor Data Room</div>
-        <h1 class="page-title">Ten nations. One championship. The complete case.</h1>
+        <h1 class="page-title">The investment case for a ten-nation racing championship.</h1>
         <p class="page-orient">
-          Confidential. <span class="mint">For qualified investors only.</span> All materials provided under NDA.
-          7&nbsp;categories, 25&nbsp;documents plus detailed models on request. The complete data room in one place.
+          This data room is confidential and is shared under NDA with qualified investors. The seven core documents are open below, and supporting documents and detailed models are available on request.
         </p>
       </div>
     </div>
@@ -1005,26 +1014,18 @@
   <div class="container catnav-inner">
     <button class="catnav-arrow left" id="catnav-prev" type="button" aria-label="Scroll categories left" hidden>‹</button>
     <span class="catnav-label" aria-hidden="true">Jump to</span>
-    <a href="#cat-1" data-cat="cat-1"><span class="num">01</span><span class="label">Start Here. The 20 Minute Read</span></a>
-    <a href="#cat-2" data-cat="cat-2"><span class="num">02</span><span class="label">Team &amp; Execution</span></a>
-    <a href="#cat-3" data-cat="cat-3"><span class="num">03</span><span class="label">The Business. Economics &amp; Returns</span></a>
-    <a href="#cat-4" data-cat="cat-4"><span class="num">04</span><span class="label">Market, Fans &amp; Media</span></a>
-    <a href="#cat-5" data-cat="cat-5"><span class="num">05</span><span class="label">Markets, Regulation &amp; Wagering</span></a>
-    <a href="#cat-6" data-cat="cat-6"><span class="num">06</span><span class="label">Corporate, Governance &amp; Risk</span></a>
-    <a href="#cat-7" data-cat="cat-7"><span class="num">07</span><span class="label">Detailed Models &amp; Analysis</span></a>
+    <a href="#core" data-cat="core"><span class="num">01</span><span class="label">Core Documents</span></a>
+    <a href="#on-request" data-cat="on-request"><span class="num">02</span><span class="label">On Request</span></a>
     <button class="catnav-arrow right" id="catnav-next" type="button" aria-label="Scroll categories right">›</button>
   </div>
 </nav>
 
 <div class="container">
   <div class="toolbar">
-    <label class="search">
-      <span class="glyph" aria-hidden="true">⌕</span>
-      <input id="q" type="search" placeholder="Search documents" autocomplete="off">
-    </label>
+    
     <div class="toolbar-meta">
-      <span>Showing<span class="v num" id="count-shown">25</span></span>
-      <span>Categories<span class="v num">7</span></span>
+      <span>Core documents<span class="v num">7</span></span>
+      <span>Available on request<span class="v num">21</span></span>
     </div>
   </div>
 </div>
@@ -1050,65 +1051,138 @@
 <main class="container" id="main"></main>
 
 <!-- ============================================================
-     CATEGORY 7 — Deeper models, shared on request (distinct treatment)
+     02 ON REQUEST — items shared individually (no file links)
      ============================================================ -->
 <div class="container" id="request-wrap">
-  <section class="cat cat-request" id="cat-7" data-cat="cat-7">
+  <section class="cat cat-request" id="on-request" data-cat="on-request">
     <div class="cat-head">
       <div>
         <div class="cat-num">
-          <span class="index num">07</span>
-          <span>Category 7 of 7</span>
+          <span class="index num">02</span>
+          <span>Section 2 of 2</span>
         </div>
-        <h2 class="cat-title">Detailed Models &amp; Analysis - On Request</h2>
-        <p class="cat-desc">Proprietary models and analysis shared individually with qualified investors. Request any item and we'll send it across.</p>
+        <h2 class="cat-title">On Request</h2>
+        <p class="cat-desc">Supporting documents and detailed models are shared individually with qualified investors. Request any item below and we will send it to you.</p>
       </div>
-      <div class="cat-count"><span class="v num">9</span>models</div>
+      <div class="cat-count"><span class="v num">21</span>items</div>
     </div>
     <div class="cat-rule"></div>
+    <h3 class="req-group">Financial model</h3>
     <div class="req-grid">
-      <a class="req-tile" href="mailto:darragh@galoprix.com?subject=Data%20Room%20request%3A%20Nation%2FFranchise%20Scoring%20Matrix">
+      <a class="req-tile" href="mailto:darragh@galoprix.com?subject=Data%20Room%20request%3A%20Financial%20Model.%20Seed%20Summary">
         <span class="req-num">01</span>
-        <span class="req-name">Nation / Franchise Scoring Matrix</span>
+        <span class="req-name">Financial Model. Seed Summary</span>
+        <span class="req-cta">Request <span class="arr" aria-hidden="true">↗</span></span>
+      </a>
+    </div>
+    <h3 class="req-group">The business</h3>
+    <div class="req-grid">
+      <a class="req-tile" href="mailto:darragh@galoprix.com?subject=Data%20Room%20request%3A%20Business%20Model">
+        <span class="req-num">02</span>
+        <span class="req-name">Business Model</span>
+        <span class="req-cta">Request <span class="arr" aria-hidden="true">↗</span></span>
+      </a>
+      <a class="req-tile" href="mailto:darragh@galoprix.com?subject=Data%20Room%20request%3A%20Roadmap%20to%20Launch">
+        <span class="req-num">03</span>
+        <span class="req-name">Roadmap to Launch</span>
+        <span class="req-cta">Request <span class="arr" aria-hidden="true">↗</span></span>
+      </a>
+      <a class="req-tile" href="mailto:darragh@galoprix.com?subject=Data%20Room%20request%3A%20Owner%20Prize%20Structure">
+        <span class="req-num">04</span>
+        <span class="req-name">Owner Prize Structure</span>
+        <span class="req-cta">Request <span class="arr" aria-hidden="true">↗</span></span>
+      </a>
+      <a class="req-tile" href="mailto:darragh@galoprix.com?subject=Data%20Room%20request%3A%20Athlete%20Prize%20Structure">
+        <span class="req-num">05</span>
+        <span class="req-name">Athlete Prize Structure</span>
+        <span class="req-cta">Request <span class="arr" aria-hidden="true">↗</span></span>
+      </a>
+    </div>
+    <h3 class="req-group">Market, fans &amp; welfare</h3>
+    <div class="req-grid">
+      <a class="req-tile" href="mailto:darragh@galoprix.com?subject=Data%20Room%20request%3A%20Fan%20Engagement%20%26%20Brand%20Strategy">
+        <span class="req-num">06</span>
+        <span class="req-name">Fan Engagement &amp; Brand Strategy</span>
+        <span class="req-cta">Request <span class="arr" aria-hidden="true">↗</span></span>
+      </a>
+      <a class="req-tile" href="mailto:darragh@galoprix.com?subject=Data%20Room%20request%3A%20Macro%20Environment%20Brief">
+        <span class="req-num">07</span>
+        <span class="req-name">Macro Environment Brief</span>
+        <span class="req-cta">Request <span class="arr" aria-hidden="true">↗</span></span>
+      </a>
+      <a class="req-tile" href="mailto:darragh@galoprix.com?subject=Data%20Room%20request%3A%20Competitive%20Landscape">
+        <span class="req-num">08</span>
+        <span class="req-name">Competitive Landscape</span>
+        <span class="req-cta">Request <span class="arr" aria-hidden="true">↗</span></span>
+      </a>
+      <a class="req-tile" href="mailto:darragh@galoprix.com?subject=Data%20Room%20request%3A%20Welfare%20Framework">
+        <span class="req-num">09</span>
+        <span class="req-name">Welfare Framework</span>
+        <span class="req-cta">Request <span class="arr" aria-hidden="true">↗</span></span>
+      </a>
+    </div>
+    <h3 class="req-group">Wagering, IP &amp; risk</h3>
+    <div class="req-grid">
+      <a class="req-tile" href="mailto:darragh@galoprix.com?subject=Data%20Room%20request%3A%20Wagering%20Architecture%20%26%20Data%20Rights">
+        <span class="req-num">10</span>
+        <span class="req-name">Wagering Architecture &amp; Data Rights</span>
+        <span class="req-cta">Request <span class="arr" aria-hidden="true">↗</span></span>
+      </a>
+      <a class="req-tile" href="mailto:darragh@galoprix.com?subject=Data%20Room%20request%3A%20AML%20%26%20Responsible%20Gambling%20Framework">
+        <span class="req-num">11</span>
+        <span class="req-name">AML &amp; Responsible Gambling Framework</span>
+        <span class="req-cta">Request <span class="arr" aria-hidden="true">↗</span></span>
+      </a>
+      <a class="req-tile" href="mailto:darragh@galoprix.com?subject=Data%20Room%20request%3A%20IP%20Protection%20Strategy">
+        <span class="req-num">12</span>
+        <span class="req-name">IP Protection Strategy</span>
+        <span class="req-cta">Request <span class="arr" aria-hidden="true">↗</span></span>
+      </a>
+      <a class="req-tile" href="mailto:darragh@galoprix.com?subject=Data%20Room%20request%3A%20Risk%20Register">
+        <span class="req-num">13</span>
+        <span class="req-name">Risk Register</span>
+        <span class="req-cta">Request <span class="arr" aria-hidden="true">↗</span></span>
+      </a>
+    </div>
+    <h3 class="req-group">Detailed models &amp; analysis</h3>
+    <div class="req-grid">
+      <a class="req-tile" href="mailto:darragh@galoprix.com?subject=Data%20Room%20request%3A%20Nation%20Scoring%20Matrix">
+        <span class="req-num">14</span>
+        <span class="req-name">Nation Scoring Matrix</span>
         <span class="req-cta">Request <span class="arr" aria-hidden="true">↗</span></span>
       </a>
       <a class="req-tile" href="mailto:darragh@galoprix.com?subject=Data%20Room%20request%3A%20Venue%20Analysis%20%26%20Weighting">
-        <span class="req-num">02</span>
+        <span class="req-num">15</span>
         <span class="req-name">Venue Analysis &amp; Weighting</span>
         <span class="req-cta">Request <span class="arr" aria-hidden="true">↗</span></span>
       </a>
       <a class="req-tile" href="mailto:darragh@galoprix.com?subject=Data%20Room%20request%3A%20Fixture%20Acquisition%20Strategy">
-        <span class="req-num">03</span>
+        <span class="req-num">16</span>
         <span class="req-name">Fixture Acquisition Strategy</span>
         <span class="req-cta">Request <span class="arr" aria-hidden="true">↗</span></span>
       </a>
       <a class="req-tile" href="mailto:darragh@galoprix.com?subject=Data%20Room%20request%3A%20Pattern%20Race%20Elevation%20Roadmap">
-        <span class="req-num">04</span>
+        <span class="req-num">17</span>
         <span class="req-name">Pattern Race Elevation Roadmap</span>
         <span class="req-cta">Request <span class="arr" aria-hidden="true">↗</span></span>
       </a>
       <a class="req-tile" href="mailto:darragh@galoprix.com?subject=Data%20Room%20request%3A%20Investor%20Operational%20Matrix%20(all%20nations)">
-        <span class="req-num">05</span>
+        <span class="req-num">18</span>
         <span class="req-name">Investor Operational Matrix <span class="req-sub">(all nations)</span></span>
         <span class="req-cta">Request <span class="arr" aria-hidden="true">↗</span></span>
       </a>
       <a class="req-tile" href="mailto:darragh@galoprix.com?subject=Data%20Room%20request%3A%20Sponsorship%20Revenue%20Model">
-        <span class="req-num">06</span>
+        <span class="req-num">19</span>
         <span class="req-name">Sponsorship Revenue Model</span>
         <span class="req-cta">Request <span class="arr" aria-hidden="true">↗</span></span>
       </a>
       <a class="req-tile" href="mailto:darragh@galoprix.com?subject=Data%20Room%20request%3A%20Wagering%20Revenue%20Model">
-        <span class="req-num">07</span>
+        <span class="req-num">20</span>
         <span class="req-name">Wagering Revenue Model</span>
         <span class="req-cta">Request <span class="arr" aria-hidden="true">↗</span></span>
       </a>
-      <a class="req-tile" href="mailto:darragh@galoprix.com?subject=Data%20Room%20request%3A%20Horse%20Owners%20%26%20Jockeys%20Prize%20Structure">
-        <span class="req-num">08</span>
-        <span class="req-name">Horse Owners &amp; Jockeys Prize Structure</span>
-        <span class="req-cta">Request <span class="arr" aria-hidden="true">↗</span></span>
-      </a>
       <a class="req-tile" href="mailto:darragh@galoprix.com?subject=Data%20Room%20request%3A%20Jockey%20Eligibility%20Framework">
-        <span class="req-num">09</span>
+        <span class="req-num">21</span>
         <span class="req-name">Jockey Eligibility Framework</span>
         <span class="req-cta">Request <span class="arr" aria-hidden="true">↗</span></span>
       </a>
@@ -1116,12 +1190,6 @@
   </section>
 </div>
 
-<div class="container">
-  <div class="no-results" id="no-results">
-    <div class="h">No documents match that search.</div>
-    <div class="p">Try a different term, or clear the field to see the full data room.</div>
-  </div>
-</div>
 
 <footer class="bottom">
   <div class="container">
@@ -1140,7 +1208,7 @@
         <ul>
           <li>Galoprix Global Ventures Limited</li>
           <li>Registered in England &amp; Wales</li>
-          <li>Co. No. 14872910</li>
+          <li>Co. No. 17103998</li>
           <li>London</li>
         </ul>
       </div>
@@ -1214,154 +1282,65 @@
   /* ============================================================
      DATA ROOM CONTENT
      ============================================================ */
-  const DATA = [
-    {
-      id: "cat-1", num: "01", title: "Start Here. The 20 Minute Read",
-      desc: "The first documents to open. Read these for the full picture in 20 minutes.",
-      docs: [
-        { t: "Executive Teaser",      d: "The short read. What Galoprix is, why now and the ask.",                                  ext: "DOCX", url: "https://docs.google.com/document/d/11HPHS8LHTxYYDSz9g9G4aDCkGfRVpUEu/edit?usp=drive_link" },
-        { t: "Investor Presentation", d: "The full pitch. Thesis, format, commercial architecture and traction.",                    ext: "PDF",  url: "https://drive.google.com/file/d/1P6Lv-MSGT-X2q7q5dAGU1-GNs5bV6yoH/view?usp=drive_link" },
-        { t: "Seed Round Fact Sheet", d: "One page on the round. Terms, format, market and use of funds.",                           ext: "DOCX", url: "https://docs.google.com/document/d/1emTqRYIfSc2WDMlTENy5L4mRexTO9v5q/edit?usp=drive_link" },
-        { t: "Financial Snapshot",    d: "The headline numbers. Revenue build, cost base and the seed ask.",                         ext: "DOCX", url: "https://docs.google.com/document/d/1T_p0Daa1O8Z1hR1rtApGGt6U3PHno6_c/edit?usp=drive_link" },
-        { t: "Investor FAQ",          d: "The diligence questions, answered ahead of time. Format, commercial, financial and team.",  ext: "DOCX", url: "https://docs.google.com/document/d/1KQTQeC4iErBzUK5LFkDF_kzz2wtVbPNF/edit?usp=drive_link" },
-      ],
-    },
-    {
-      id: "cat-2", num: "02", title: "Team & Execution",
-      desc: "Who is building this, and the path from today to Season 1.",
-      docs: [
-        { t: "Team Slide",        d: "Founders, leadership and the operating bench behind Galoprix.", ext: "PDF",  url: "https://drive.google.com/file/d/1Qb9uIJo_xXCtBOcvYZokYa0uWfqr3zxZ/view?usp=drive_link" },
-        { t: "Roadmap to Launch", d: "The execution plan and the milestone timeline to Season 1.",    ext: "XLSX", url: "https://docs.google.com/spreadsheets/d/1Kp2yk2bjH5qMHeOaKDeVinuqraAXwPJq/edit?usp=drive_link" },
-      ],
-    },
-    {
-      id: "cat-3", num: "03", title: "The Business. Economics & Returns",
-      desc: "The commercial logic, the financial model, franchise economics and the exit thesis.",
-      docs: [
-        { t: "Business Model Memorandum",           d: "Revenue architecture, commercial sequencing and the financial logic.",                 ext: "DOCX", url: "https://docs.google.com/document/d/1KVRCEXgMyFyzILI-eLaKodwVftsX9S4O/edit?usp=drive_link" },
-        { t: "Franchise Model. Investor Overview",  d: "Dual ownership structure, the 3 stage rights framework, the fee model and exit terms.", ext: "DOCX", url: "https://docs.google.com/document/d/1n5fqsoqOSqkHBv-J1jP7qWU7B8Og2ycE/edit?usp=drive_link" },
-        { t: "Financial Narrative",                 d: "The numbers in prose. How the model builds and what drives it.",                        ext: "DOCX", url: "https://docs.google.com/document/d/1dOkXv8l1sh5UpsY3SPuM1xH0zK7N55MD/edit?usp=drive_link" },
-        { t: "8 Year Financial Model. Seed",        d: "Full profit and loss, revenue build, cost build, headcount and the scenario engine.",  ext: "XLSX", url: "https://docs.google.com/spreadsheets/d/12Gij8rSukH_9FC3Dc435orLxNt9YKqKi/edit?usp=drive_link" },
-        { t: "Season 1 Event Budget",               d: "The event level cost breakdown for the Season 1 race days.",                            ext: "XLSX", url: "https://docs.google.com/spreadsheets/d/1F743njZapvNexTpBdD4fRxp4eHVV2pdT/edit?usp=drive_link" },
-        { t: "Use of Funds",                        d: "Where the seed capital goes, and the milestones it unlocks.",                           ext: "PDF",  url: "https://drive.google.com/file/d/1PF4dv5LjLGDL5MsSBH4XxSe2U1h_kbKZ/view?usp=drive_link" },
-        { t: "Exit Pathways & Valuation Framework", d: "The comparator led valuation thesis and the routes to exit.",                          ext: "PDF",  url: "https://drive.google.com/file/d/1-L-THx2_WW1P6f50f8U-jWQ8XtPkyQoT/view?usp=drive_link" },
-      ],
-    },
-    {
-      id: "cat-4", num: "04", title: "Market, Fans & Media",
-      desc: "The macro backdrop, the competitive field and the route to a fan relationship.",
-      docs: [
-        { t: "Macro Environment Brief",        d: "The external environment. Political, economic, social and technological.", ext: "DOCX", url: "https://docs.google.com/document/d/1rOUVFYGrQDr2Mcq3_zriQJIqd3xa5bcV/edit?usp=drive_link" },
-        { t: "Competitive Landscape",          d: "Where Galoprix sits against adjacent sports, media and wagering products.", ext: "DOCX", url: "https://docs.google.com/document/d/1AVxnr_gDGq6VMBwgqSe-a2OCfdDOQ2Ff/edit?usp=drive_link" },
-        { t: "Fan Engagement & Brand Strategy", d: "The audience architecture and the route to a direct fan relationship.",    ext: "DOCX", url: "https://docs.google.com/document/d/1diqnw-j8yr-z9mFmA4xUSMowllJyeR4B/edit?usp=drive_link" },
-        { t: "Welfare Framework",              d: "The welfare first commitment behind the format and the brand.",             ext: "DOCX", url: "https://docs.google.com/document/d/1gK92bDJw3w5tTcAzpjK16q5m2QrYJxGO/edit?usp=drive_link" },
-      ],
-    },
-    {
-      id: "cat-5", num: "05", title: "Markets, Regulation & Wagering",
-      desc: "The wagering architecture, AML and responsible gambling, and the welfare foundation.",
-      docs: [
-        { t: "Wagering Architecture & Data Rights",  d: "The layered wagering model, the partnerships and source controlled data rights.",   ext: "DOCX", url: "https://docs.google.com/document/d/1lcsuFxZC9L3LKUgKTMa3REi3J2Ql0O_v/edit?usp=drive_link" },
-        { t: "AML & Responsible Gambling Framework", d: "The compliance posture across jurisdictions and the responsible gambling framework.", ext: "DOCX", url: "https://docs.google.com/document/d/1_yMbAfc3CJegxjX-NQcoC0xtOgh1HHbR/edit?usp=drive_link" },
-        { t: "Welfare Framework & Foundation",       d: "The governing welfare framework and the independent foundation behind it.",           ext: "DOCX", url: "https://docs.google.com/document/d/1FsSEkKzCTycDeKJo2mTDe94b9LtfxiJT/edit?usp=drive_link" },
-      ],
-    },
-    {
-      id: "cat-6", num: "06", title: "Corporate, Governance & Risk",
-      desc: "The legal structure, governance, intellectual property and the risk register.",
-      docs: [
-        { t: "Corporate Structure",    d: "The registered entity, ownership and the proposed architecture after investment.", ext: "DOCX", url: "https://docs.google.com/document/d/1osbV8rJQKBYWgTJaETqd28wcVpWljRxn/edit?usp=drive_link" },
-        { t: "Governance Framework",   d: "Board composition, reserved matters, investor rights and the reporting cadence.",  ext: "DOCX", url: "https://docs.google.com/document/d/1uG041ZY1DddikHvp_WCK2iW66Uvt6qL4/edit?usp=drive_link" },
-        { t: "IP Protection Strategy", d: "Trademarks, domains, format documentation and brand asset ownership.",             ext: "DOCX", url: "https://docs.google.com/document/d/1IskWAEsI4woSqFmHIpxF9hn-lbyOXrqn/edit?usp=drive_link" },
-        { t: "Risk Register",          d: "The full risk matrix. Commercial, operational, regulatory and financial.",         ext: "XLSX", url: "https://docs.google.com/spreadsheets/d/1vID3oGuKIajphVGJqPSm8_mzwRhiq-rI/edit?usp=drive_link" },
-      ],
-    },
-  ];
+  const CORE = {
+    id: "core", num: "01", title: "Core Documents",
+    desc: "These seven documents set out the case for Galoprix and are best read in the order shown.",
+    // url: link each to ONE current PDF from Darragh. Leave "" until the file is supplied.
+    docs: [
+      { t: "Executive Teaser",      ext: "PDF", url: "", d: "A short introduction to Galoprix, why the timing is right and what the seed round is raising." },                                       // Galoprix Executive Teaser (PDF, 13 Nov)
+      { t: "Investor Presentation", ext: "PDF", url: "", d: "The full pitch, from the gap in racing and the championship format to the ownership model and launch plan." },                          // Galoprix Investor Presentation.pdf (24 Nov)
+      { t: "Team & Advisers",       ext: "PDF", url: "", d: "The founder and advisers behind Galoprix, and the experience each of them brings." },                                                 // Galoprix Team and Advisers.pdf (24 Nov)
+      { t: "Financial Snapshot",    ext: "PDF", url: "", d: "The first five seasons in figures, showing how the plan is funded, where revenue comes from and what the championship costs to run." }, // Galoprix_Financial_Snapshot_v9.pdf (24 Nov). NOT v8.
+      { t: "Use of Funds",          ext: "PDF", url: "", d: "How the seed capital will be spent and the milestones it is expected to reach." },                                                    // Galoprix_Use_of_Funds_v6.pdf (11 Nov)
+      { t: "Team Ownership Model",  ext: "PDF", url: "", d: "How Nation Team ownership works, including what an owner pays and what they receive." },                                             // Galoprix Team Ownership Model.pdf (24 Nov, v4.1)
+      { t: "Investor FAQ",          ext: "PDF", url: "", d: "Answers to the questions an investor is likely to ask during diligence." },                                                           // Galoprix_Investor_FAQ_v9.pdf (11 Nov)
+    ],
+  };
 
   const main = document.getElementById("main");
-  let docCounter = 0;
-  DATA.forEach((cat) => {
+  {
+    const cat = CORE;
+    const esc = (x) => x.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
     const sec = document.createElement("section");
     sec.className = "cat";
     sec.id = cat.id;
-
-    const head = document.createElement("div");
-    head.className = "cat-head";
-    head.innerHTML = `
-      <div>
-        <div class="cat-num">
-          <span class="index num">${cat.num}</span>
-          <span>Category ${parseInt(cat.num, 10)} of 7</span>
+    sec.innerHTML = `
+      <div class="cat-head">
+        <div>
+          <div class="cat-num">
+            <span class="index num">${cat.num}</span>
+            <span>Section 1 of 2</span>
+          </div>
+          <h2 class="cat-title">${cat.title}</h2>
+          <p class="cat-desc">${cat.desc}</p>
         </div>
-        <h2 class="cat-title">${cat.title}</h2>
-        <p class="cat-desc">${cat.desc}</p>
+        <div class="cat-count"><span class="v num">${cat.docs.length}</span>documents</div>
       </div>
-      <div class="cat-count"><span class="v num">${cat.docs.length}</span>documents</div>
-    `;
-    sec.appendChild(head);
-
-    const rule = document.createElement("div");
-    rule.className = "cat-rule";
-    sec.appendChild(rule);
-
+      <div class="cat-rule"></div>`;
     const grid = document.createElement("div");
     grid.className = "doc-grid";
-
-    cat.docs.forEach((doc) => {
-      docCounter += 1;
-      const idx = String(docCounter).padStart(2, "0");
+    cat.docs.forEach((doc, i) => {
+      const idx = String(i + 1).padStart(2, "0");
+      const t = esc(doc.t);
+      const btn = doc.url
+        ? `<a class="btn-open" href="${doc.url}" target="_blank" rel="noopener noreferrer" aria-label="Open ${t} (opens in a new tab)">Open document <span class="arr" aria-hidden="true">↗</span></a>`
+        : `<span class="btn-open is-pending" aria-disabled="true">File to follow</span>`;
       const card = document.createElement("article");
       card.className = "doc";
-      card.dataset.search = (doc.t + " " + doc.d + " " + doc.ext).toLowerCase();
       card.innerHTML = `
         <div class="doc-top">
           <span class="doc-num">Doc ${idx}</span>
           <span class="doc-type ${doc.ext.toLowerCase()}">${doc.ext}</span>
         </div>
-        <h3 class="doc-title">${doc.t}</h3>
-        <p class="doc-desc">${doc.d}</p>
-        <div class="doc-foot">
-          <a class="btn-open" href="${doc.url}" target="_blank" rel="noopener noreferrer" aria-label="Open ${doc.t} (opens in a new tab)">
-            Open Document <span class="arr" aria-hidden="true">↗</span>
-          </a>
-        </div>
-      `;
+        <h3 class="doc-title">${t}</h3>
+        <p class="doc-desc">${esc(doc.d)}</p>
+        <div class="doc-foot">${btn}</div>`;
       grid.appendChild(card);
     });
-
     sec.appendChild(grid);
     main.appendChild(sec);
-  });
-
-  const q          = document.getElementById("q");
-  const countShown = document.getElementById("count-shown");
-  const noResults  = document.getElementById("no-results");
-  const videoWrap  = document.getElementById("video-wrap");
-  const requestWrap= document.getElementById("request-wrap");
-  countShown.textContent = document.querySelectorAll(".doc").length;
-
-  function applyFilter() {
-    const term = q.value.trim().toLowerCase();
-    const searching = term.length > 0;
-    // The video and the "on request" models aren't part of document search —
-    // hide them while a query is active so the results stand alone.
-    if (videoWrap)   videoWrap.classList.toggle("search-hidden", searching);
-    if (requestWrap) requestWrap.classList.toggle("search-hidden", searching);
-
-    let shown = 0;
-    document.querySelectorAll("section.cat:not(.cat-request)").forEach((sec) => {
-      let secShown = 0;
-      sec.querySelectorAll(".doc").forEach((card) => {
-        const match = !term || card.dataset.search.includes(term);
-        card.classList.toggle("hidden", !match);
-        if (match) { shown += 1; secShown += 1; }
-      });
-      sec.classList.toggle("empty", secShown === 0);
-    });
-    countShown.textContent = shown;
-    noResults.classList.toggle("show", shown === 0);
   }
-  q.addEventListener("input", applyFilter);
+
 
   const navLinks = document.querySelectorAll(".catnav a");
   const io = new IntersectionObserver((entries) => {
