@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Investor Data Room | Galoprix</title>
+
+<meta name="description" content="Galoprix Investor Data Room. Confidential — for qualified investors only.">
+
+<meta property="og:title" content="Galoprix · Investor Data Room">
+<meta property="og:description" content="Confidential — for qualified investors only.">
+<meta property="og:image" content="https://galoprix.com/Galoprix.jpeg">
+<meta property="og:url" content="https://galoprix.com/investor-test-2">
+<meta property="og:type" content="website">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Galoprix · Investor Data Room">
+<meta name="twitter:description" content="Confidential — for qualified investors only.">
+<meta name="twitter:image" content="https://galoprix.com/Galoprix.jpeg">
+
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" sizes="192x192" href="/favicon-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="/favicon-512.png">
+<style>
+  @font-face {
+    font-family: "Boldonse";
+    src: url("/Boldonse-Regular.ttf") format("truetype");
+    font-weight: 400; font-style: normal; font-display: swap;
+  }
+  @font-face {
+    font-family: "Sora";
+    src: url("/Sora-Light.ttf") format("truetype");
+    font-weight: 300; font-style: normal; font-display: swap;
+  }
+  @font-face {
+    font-family: "Sora";
+    src: url("/Sora-Regular.ttf") format("truetype");
+    font-weight: 400; font-style: normal; font-display: swap;
+  }
+  @font-face {
+    font-family: "Sora";
+    src: url("/Sora-SemiBold.ttf") format("truetype");
+    font-weight: 600; font-style: normal; font-display: swap;
+  }
+
+  :root {
+    --racing-blue: #010125;
+    --mint:        #92F8BA;
+    --white:       #FFFFFF;
+
+    --rule-on-blue-faint: rgba(255, 255, 255, 0.12);
+    --rule-on-white:      rgba(1, 1, 37, 0.14);
+
+    --font-wordmark: "Boldonse", "Times New Roman", serif;
+    --font-sans:     "Sora", ui-sans-serif, system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+
+    --ease-out: cubic-bezier(0.22, 0.61, 0.36, 1);
+    --dur-fast: 120ms;
+    --dur-med:  220ms;
+  }
+
+  /* ============================================================
+     Investor Data Room | single-page hub
+     ============================================================ */
+  html { scroll-behavior: smooth; }
+  body { font-family: Sora, system-ui, sans-serif; }
+  /* ---------- Password gate ------------------------------------ */
+
+  .gate {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: var(--racing-blue);
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px;
+  }
+  .gate.hidden { display: none; }
+
+  .gate-card {
+    width: 100%;
+    max-width: 460px;
+  }
+  .gate-wordmark {
+    font-family: var(--font-wordmark);
+    font-size: 22px;
+    color: var(--mint);
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    margin-bottom: 56px;
+  }
+  .gate-eyebrow {
+    color: var(--mint);
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+  }
+  .gate-title {
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: 40px;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    margin: 0 0 14px;
+  }
+  .gate-orient {
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 1.55;
+    color: rgba(255,255,255,0.72);
+    margin: 0 0 36px;
+  }
+  .gate-form {
+    display: flex;
+    gap: 12px;
+    align-items: stretch;
+    border-bottom: 1px solid rgba(255,255,255,0.3);
+    padding-bottom: 6px;
+    transition: border-color var(--dur-fast) var(--ease-out);
+  }
+  .gate-form:focus-within { border-color: var(--mint); }
+  .gate-form input {
+    flex: 1;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    font-family: var(--font-sans);
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--white);
+    padding: 10px 0;
+    letter-spacing: 0.04em;
+  }
+  .gate-form input::placeholder { color: rgba(255,255,255,0.4); }
+  .gate-form button {
+    background: var(--mint);
+    color: var(--racing-blue);
+    border: 0;
+    border-radius: 2px;
+    padding: 10px 16px 9px;
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: 11.5px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: opacity var(--dur-fast) var(--ease-out);
+    line-height: 1;
+  }
+  .gate-form button:hover { opacity: 0.85; }
+  .gate-error {
+    margin: 14px 0 0;
+    font-size: 12px;
+    color: var(--mint);
+    letter-spacing: 0.04em;
+  }
+  .gate-help {
+    margin: 56px 0 0;
+    font-size: 12px;
+    color: rgba(255,255,255,0.45);
+    letter-spacing: 0.04em;
+  }
+  .gate-help a {
+    border-bottom: 1px solid rgba(146,248,186,0.45);
+    padding-bottom: 1px;
+  }
+  .gate-help a:hover { color: var(--mint); border-color: var(--mint); }
+
+  /* Hide the data room until unlocked (avoids flash of content) */
+  body.locked .site { display: none; }
+
+
+body{margin:0;background:#010125}
+a{color:#92F8BA;text-decoration:none}a:hover{color:#C9FCDD}
+.row{display:flex;justify-content:space-between;align-items:center;gap:16px;border-top:1px solid #1C2050;font-size:15px;font-weight:300}
+.req{display:inline-flex;align-items:center;min-height:44px;font-weight:600;font-size:13px;white-space:nowrap}
+.doc{display:flex;flex-wrap:wrap;align-items:center;gap:16px 28px;padding:22px 0;border-top:1px solid #1C2050}
+.open{display:inline-flex;align-items:center;min-height:44px;padding:0 20px;border-radius:999px;background:#92F8BA;color:#010125;font-weight:600;font-size:13px;white-space:nowrap}
+.open:hover{background:#C9FCDD;color:#010125}
+
+
+  .open.pending { opacity: 0.45; cursor: default; }
+  @media (max-width: 640px) { .gate-form { flex-direction: column; } }
+</style>
+</head>
+<body class="locked">
+<div class="gate" id="gate">
+  <div class="gate-card">
+    <div class="gate-wordmark">GALOPRIX</div>
+    <div class="gate-eyebrow">Investor Data Room</div>
+    <h1 class="gate-title">Confidential.</h1>
+    <p class="gate-orient">For qualified investors only. Enter the access code provided to continue.</p>
+    <form class="gate-form" id="gate-form">
+      <input type="password" id="gate-input" placeholder="Access code" autocomplete="off" autofocus required>
+      <button type="submit">Enter</button>
+    </form>
+    <p class="gate-error" id="gate-error" hidden>That access code didn't match. Please try again.</p>
+    <p class="gate-help">Need access? <a href="mailto:darragh@galoprix.com">darragh@galoprix.com</a></p>
+  </div>
+</div>
+
+<div class="site">
+
+
+<div style="background: rgb(1, 1, 37); color: rgb(255, 255, 255); font-family: Sora, system-ui, sans-serif; line-height: 1.5;"><div style="max-width: 1160px; margin: 0px auto; padding: 0px 32px; box-sizing: border-box;"><header style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px 24px; padding: 24px 0px;"><div style="font-family: Boldonse, Sora, sans-serif; font-size: 16px; letter-spacing: 0.04em;">GALOPRIX</div><div style="display: flex; align-items: center; gap: 24px; font-size: 13px;"><span style="color: rgb(180, 186, 208);">Session active</span><a href="#" class="req" id="logout">Log out</a></div></header><section style="padding: 72px 0px 56px;"><div style="font-size: 13px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: rgb(146, 248, 186);">Investor Data Room</div><h1 style="margin: 20px 0px 0px; font-family: Boldonse, Sora, sans-serif; font-weight: 400; font-size: clamp(28px, 4.4vw, 52px); line-height: 1.5; max-width: 900px;">The investment case for a ten-nation racing championship.</h1><p style="margin: 28px 0px 0px; max-width: 680px; font-size: 16px; font-weight: 300; color: rgb(180, 186, 208);">This data room is confidential and is shared under NDA with qualified investors. The seven core documents are open below, and supporting documents and detailed models are available on request.</p><div style="display: flex; flex-wrap: wrap; gap: 16px 56px; margin-top: 44px; align-items: flex-end;"><div><div style="font-size: 40px; font-weight: 600; color: rgb(146, 248, 186); line-height: 1;">7</div><div style="font-size: 13px; color: rgb(180, 186, 208); margin-top: 8px;">Core documents</div></div><div><div style="font-size: 40px; font-weight: 600; line-height: 1;">21</div><div style="font-size: 13px; color: rgb(180, 186, 208); margin-top: 8px;">Available on request</div></div><div style="margin-left: auto; font-size: 13px;"><span style="color: rgb(180, 186, 208);">Contact </span><a href="mailto:darragh@galoprix.com" class="req">darragh@galoprix.com</a></div></div><nav aria-label="Jump to" style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 36px;"><a href="#core" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0px 18px; border: 1px solid rgb(42, 47, 107); border-radius: 999px; font-size: 13px; font-weight: 600;">01 Core Documents</a><a href="#on-request" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0px 18px; border: 1px solid rgb(42, 47, 107); border-radius: 999px; font-size: 13px; font-weight: 600;">02 On Request</a></nav></section><section id="core" style="padding: 40px 0px 24px;"><div style="font-size: 13px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: rgb(146, 248, 186);">01</div><h2 style="margin: 8px 0px 0px; font-size: 30px; font-weight: 600;">Core Documents</h2><p style="margin: 10px 0px 28px; max-width: 620px; font-size: 15px; font-weight: 300; color: rgb(180, 186, 208);">These seven documents set out the case for Galoprix and are best read in the order shown.</p><div class="doc"><div style="flex: 0 0 64px; font-size: 28px; font-weight: 600; color: rgb(146, 248, 186);">01</div><div style="flex: 1 1 380px; min-width: 0px;"><div style="font-size: 19px; font-weight: 600;">Executive Teaser</div><div style="font-size: 14px; font-weight: 300; color: rgb(180, 186, 208); margin-top: 4px;">A short introduction to Galoprix, why the timing is right and what the seed round is raising.</div></div><div style="font-size: 12px; font-weight: 600; letter-spacing: 0.1em; color: rgb(180, 186, 208);">PDF</div><span class="open pending" aria-disabled="true">Link pending</span></div><div class="doc"><div style="flex: 0 0 64px; font-size: 28px; font-weight: 600; color: rgb(146, 248, 186);">02</div><div style="flex: 1 1 380px; min-width: 0px;"><div style="font-size: 19px; font-weight: 600;">Investor Presentation</div><div style="font-size: 14px; font-weight: 300; color: rgb(180, 186, 208); margin-top: 4px;">The full pitch, from the gap in racing and the championship format to the ownership model and launch plan.</div></div><div style="font-size: 12px; font-weight: 600; letter-spacing: 0.1em; color: rgb(180, 186, 208);">PDF</div><span class="open pending" aria-disabled="true">Link pending</span></div><div class="doc"><div style="flex: 0 0 64px; font-size: 28px; font-weight: 600; color: rgb(146, 248, 186);">03</div><div style="flex: 1 1 380px; min-width: 0px;"><div style="font-size: 19px; font-weight: 600;">Team &amp; Advisers</div><div style="font-size: 14px; font-weight: 300; color: rgb(180, 186, 208); margin-top: 4px;">The founder and advisers behind Galoprix, and the experience each of them brings.</div></div><div style="font-size: 12px; font-weight: 600; letter-spacing: 0.1em; color: rgb(180, 186, 208);">PDF</div><span class="open pending" aria-disabled="true">Link pending</span></div><div class="doc"><div style="flex: 0 0 64px; font-size: 28px; font-weight: 600; color: rgb(146, 248, 186);">04</div><div style="flex: 1 1 380px; min-width: 0px;"><div style="font-size: 19px; font-weight: 600;">Financial Snapshot</div><div style="font-size: 14px; font-weight: 300; color: rgb(180, 186, 208); margin-top: 4px;">The first five seasons in figures, showing how the plan is funded, where revenue comes from and what the championship costs to run.</div></div><div style="font-size: 12px; font-weight: 600; letter-spacing: 0.1em; color: rgb(180, 186, 208);">PDF</div><span class="open pending" aria-disabled="true">Link pending</span></div><div class="doc"><div style="flex: 0 0 64px; font-size: 28px; font-weight: 600; color: rgb(146, 248, 186);">05</div><div style="flex: 1 1 380px; min-width: 0px;"><div style="font-size: 19px; font-weight: 600;">Use of Funds</div><div style="font-size: 14px; font-weight: 300; color: rgb(180, 186, 208); margin-top: 4px;">How the seed capital will be spent and the milestones it is expected to reach.</div></div><div style="font-size: 12px; font-weight: 600; letter-spacing: 0.1em; color: rgb(180, 186, 208);">PDF</div><span class="open pending" aria-disabled="true">Link pending</span></div><div class="doc"><div style="flex: 0 0 64px; font-size: 28px; font-weight: 600; color: rgb(146, 248, 186);">06</div><div style="flex: 1 1 380px; min-width: 0px;"><div style="font-size: 19px; font-weight: 600;">Team Ownership Model</div><div style="font-size: 14px; font-weight: 300; color: rgb(180, 186, 208); margin-top: 4px;">How Nation Team ownership works, including what an owner pays and what they receive.</div></div><div style="font-size: 12px; font-weight: 600; letter-spacing: 0.1em; color: rgb(180, 186, 208);">PDF</div><span class="open pending" aria-disabled="true">Link pending</span></div><div class="doc" style="border-bottom: 1px solid rgb(28, 32, 80);"><div style="flex: 0 0 64px; font-size: 28px; font-weight: 600; color: rgb(146, 248, 186);">07</div><div style="flex: 1 1 380px; min-width: 0px;"><div style="font-size: 19px; font-weight: 600;">Investor FAQ</div><div style="font-size: 14px; font-weight: 300; color: rgb(180, 186, 208); margin-top: 4px;">Answers to the questions an investor is likely to ask during diligence.</div></div><div style="font-size: 12px; font-weight: 600; letter-spacing: 0.1em; color: rgb(180, 186, 208);">PDF</div><span class="open pending" aria-disabled="true">Link pending</span></div></section><section id="on-request" style="padding: 64px 0px 40px;"><div style="font-size: 13px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: rgb(146, 248, 186);">02</div><h2 style="margin: 8px 0px 0px; font-size: 30px; font-weight: 600;">On Request</h2><p style="margin: 10px 0px 32px; max-width: 620px; font-size: 15px; font-weight: 300; color: rgb(180, 186, 208);">Supporting documents and detailed models are shared individually with qualified investors. Request any item below and we will send it to you.</p><div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; align-items: start;"><div style="background: rgb(8, 10, 51); border-radius: 14px; padding: 24px 24px 8px;"><h3 style="margin: 0px 0px 16px; font-size: 13px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgb(146, 248, 186);">Financial model</h3><div class="row"><span>Financial Model. Seed Summary</span><a href="mailto:darragh@galoprix.com?subject=Data%20Room%20request%3A%20Financial%20Model.%20Seed%20Summary" class="req">Request</a></div><h3 style="margin: 28px 0px 16px; font-size: 13px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgb(146, 248, 186);">The business</h3><div class="row"><span>Business Model</span><a href="mailto:darragh@galoprix.com?subject=Data%20Room%20request%3A%20Business%20Model" class="req">Request</a></div><div class="row"><span>Roadmap to Launch</span><a href="mailto:darragh@galoprix.com?subject=Data%20Room%20request%3A%20Roadmap%20to%20Launch" class="req">Request</a></div><div class="row"><span>Owner Prize Structure</span><a href="mailto:darragh@galoprix.com?subject=Data%20Room%20request%3A%20Owner%20Prize%20Structure" class="req">Request</a></div><div class="row"><span>Athlete Prize Structure</span><a href="mailto:darragh@galoprix.com?subject=Data%20Room%20request%3A%20Athlete%20Prize%20Structure" class="req">Request</a></div></div><div style="background: rgb(8, 10, 51); border-radius: 14px; padding: 24px 24px 8px;"><h3 style="margin: 0px 0px 16px; font-size: 13px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgb(146, 248, 186);">Market, fans &amp; welfare</h3><div class="row"><span>Fan Engagement &amp; Brand Strategy</span><a href="mailto:darragh@galoprix.com?subject=Data%20Room%20request%3A%20Fan%20Engagement%20%26%20Brand%20Strategy" class="req">Request</a></div><div class="row"><span>Macro Environment Brief</span><a href="mailto:darragh@galoprix.com?subject=Data%20Room%20request%3A%20Macro%20Environment%20Brief" class="req">Request</a></div><div class="row"><span>Competitive Landscape</span><a href="mailto:darragh@galoprix.com?subject=Data%20Room%20request%3A%20Competitive%20Landscape" class="req">Request</a></div><div class="row"><span>Welfare Framework</span><a href="mailto:darragh@galoprix.com?subject=Data%20Room%20request%3A%20Welfare%20Framework" class="req">Request</a></div><h3 style="margin: 28px 0px 16px; font-size: 13px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgb(146, 248, 186);">Wagering, IP &amp; risk</h3><div class="row"><span>Wagering Architecture &amp; Data Rights</span><a href="mailto:darragh@galoprix.com?subject=Data%20Room%20request%3A%20Wagering%20Architecture%20%26%20Data%20Rights" class="req">Request</a></div><div class="row"><span>AML &amp; Responsible Gambling Framework</span><a href="mailto:darragh@galoprix.com?subject=Data%20Room%20request%3A%20AML%20%26%20Responsible%20Gambling%20Framework" class="req">Request</a></div><div class="row"><span>IP Protection Strategy</span><a href="mailto:darragh@galoprix.com?subject=Data%20Room%20request%3A%20IP%20Protection%20Strategy" class="req">Request</a></div><div class="row"><span>Risk Register</span><a href="mailto:darragh@galoprix.com?subject=Data%20Room%20request%3A%20Risk%20Register" class="req">Request</a></div></div><div style="background: rgb(8, 10, 51); border-radius: 14px; padding: 24px 24px 8px;"><h3 style="margin: 0px 0px 16px; font-size: 13px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgb(146, 248, 186);">Detailed models &amp; analysis</h3><div class="row"><span>Nation Scoring Matrix</span><a href="mailto:darragh@galoprix.com?subject=Data%20Room%20request%3A%20Nation%20Scoring%20Matrix" class="req">Request</a></div><div class="row"><span>Venue Analysis &amp; Weighting</span><a href="mailto:darragh@galoprix.com?subject=Data%20Room%20request%3A%20Venue%20Analysis%20%26%20Weighting" class="req">Request</a></div><div class="row"><span>Fixture Acquisition Strategy</span><a href="mailto:darragh@galoprix.com?subject=Data%20Room%20request%3A%20Fixture%20Acquisition%20Strategy" class="req">Request</a></div><div class="row"><span>Pattern Race Elevation Roadmap</span><a href="mailto:darragh@galoprix.com?subject=Data%20Room%20request%3A%20Pattern%20Race%20Elevation%20Roadmap" class="req">Request</a></div><div class="row"><span>Investor Operational Matrix (all nations)</span><a href="mailto:darragh@galoprix.com?subject=Data%20Room%20request%3A%20Investor%20Operational%20Matrix%20(all%20nations)" class="req">Request</a></div><div class="row"><span>Sponsorship Revenue Model</span><a href="mailto:darragh@galoprix.com?subject=Data%20Room%20request%3A%20Sponsorship%20Revenue%20Model" class="req">Request</a></div><div class="row"><span>Wagering Revenue Model</span><a href="mailto:darragh@galoprix.com?subject=Data%20Room%20request%3A%20Wagering%20Revenue%20Model" class="req">Request</a></div><div class="row"><span>Jockey Eligibility Framework</span><a href="mailto:darragh@galoprix.com?subject=Data%20Room%20request%3A%20Jockey%20Eligibility%20Framework" class="req">Request</a></div></div></div></section><footer style="display: flex; flex-wrap: wrap; gap: 32px 64px; padding: 48px 0px 56px; margin-top: 40px; border-top: 1px solid rgb(28, 32, 80); font-size: 13px; font-weight: 300; color: rgb(180, 186, 208);"><div style="flex: 2 1 360px; min-width: 0px;"><div style="font-weight: 600; color: rgb(255, 255, 255); margin-bottom: 8px;">Confidentiality</div>The contents of this data room are confidential and are provided solely for the purpose of evaluating a potential investment in Galoprix Global Ventures Limited. Materials may not be reproduced, redistributed or disclosed to any third party without prior written consent.</div><div style="flex: 1 1 200px;"><div style="font-weight: 600; color: rgb(255, 255, 255); margin-bottom: 8px;">Entity</div>Galoprix Global Ventures Limited<br>Registered in England &amp; Wales<br>Co. No. 17103998<br>London</div><div style="flex: 1 1 200px;"><div style="font-weight: 600; color: rgb(255, 255, 255); margin-bottom: 8px;">Contact</div><a href="mailto:darragh@galoprix.com">darragh@galoprix.com</a><div style="margin-top: 20px;">© 2026 Galoprix Global Ventures Limited. All rights reserved.</div><div>Built By Porter Wills</div></div></footer></div></div>
+</div>
+<script>
+  const ACCESS_CODE = "G4lopr1x";
+
+  const gate     = document.getElementById("gate");
+  const gateForm = document.getElementById("gate-form");
+  const gateInput= document.getElementById("gate-input");
+  const gateErr  = document.getElementById("gate-error");
+  const logout   = document.getElementById("logout");
+
+  function unlock() {
+    sessionStorage.setItem("idr_unlocked", "1");
+    document.body.classList.remove("locked");
+    gate.classList.add("hidden");
+    // The data room was display:none while locked, so anything that measured
+    // layout (e.g. the category-nav scroll arrows) needs a re-measure now.
+    window.dispatchEvent(new Event("resize"));
+  }
+  function lock() {
+    sessionStorage.removeItem("idr_unlocked");
+    document.body.classList.add("locked");
+    gate.classList.remove("hidden");
+    gateInput.value = "";
+    gateInput.focus();
+  }
+
+  if (sessionStorage.getItem("idr_unlocked") === "1") {
+    unlock();
+  }
+
+  gateForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    if (gateInput.value.trim() === ACCESS_CODE) {
+      gateErr.hidden = true;
+      unlock();
+    } else {
+      gateErr.hidden = false;
+      gateInput.select();
+    }
+  });
+
+  if (logout) {
+    logout.addEventListener("click", (e) => { e.preventDefault(); lock(); });
+  }
+
+</script>
+</body>
+</html>
